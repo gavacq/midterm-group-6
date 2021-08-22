@@ -55,15 +55,15 @@ VALUES (901, 05, 3);
 
 -- Seeds for messages table
 
-INSERT INTO messages (id, product_id, user_id, is_sold, datetime, content)
+INSERT INTO messages (id, product_id, user_id, is_admin, datetime, content)
 VALUES (14, 05, 3, FALSE, '2020-03-22 04:05:06', 'How old is the laptop?');
 
 
-INSERT INTO messages (id, product_id, user_id, is_sold, datetime, content)
+INSERT INTO messages (id, product_id, user_id, is_admin, datetime, content)
 VALUES (22, 03, 1, FALSE, '2019-06-04 10:43:20', 'hello, I am interested in the coffee');
 
 -- message from an admin (?)
-INSERT INTO messages (id, product_id, user_id, is_sold, datetime, content)
+INSERT INTO messages (id, product_id, user_id, is_admin, datetime, content)
 VALUES (13, 03, 1, TRUE, '2019-06-04 11:20:07', 'Sorry, the coffee is sold out');
 
 

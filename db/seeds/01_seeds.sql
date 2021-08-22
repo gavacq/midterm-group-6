@@ -1,17 +1,15 @@
--- note: should we manually insert the ids ??
-
 
 
 -- Seeds for users table
 
 INSERT INTO users (id, name, phone, country, province, city, street, postal_code)
-VALUES (1, 'User1', 111111111, 'Canada', 'British Columbia', 'Street 1', '111 111');
+VALUES (1, 'User1', 111111111, 'Canada', 'British Columbia', 'Vancouver', 'Street 1', '111 111');
 
 INSERT INTO users (id, name, phone, country, province, city, street, postal_code)
-VALUES (2, 'User2', 222222222, 'Canada', 'Ontario', 'Street 2', '222 222');
+VALUES (2, 'User2', 222222222, 'Canada', 'Ontario', 'Street 2', 'Toronto', '222 222');
 
 INSERT INTO users (id, name, phone, country, province, city, street, postal_code)
-VALUES (3, 'User3', 333333333, 'Canada', 'Quebec', 'Street 3', '333 333');
+VALUES (3, 'User3', 333333333, 'Canada', 'Quebec', 'Street 3', 'Montreal', '333 333');
 
 
 
@@ -30,11 +28,11 @@ VALUES (03, 'coffee', 'This coffee pairs great with naan', 5, '../../public/imag
 
 
 INSERT INTO products (id, name, description, price, image_path)
-VALUES (04, 'handbag', 'Original price: $150', 70, '../../public/images/product_images/handbag.jpg');
+VALUES (04, 'handbag', 'Brand new. Original price: $150', 70, '../../public/images/product_images/handbag.jpg');
 
 
 INSERT INTO products (id, name, description, price, image_path)
-VALUES (05, 'laptop', 'Selling brand new laptop, 15 inch screen', 999, '../../public/images/product_images/laptop.jpg');
+VALUES (05, 'laptop', 'Selling brand new laptop, 15 inch display.', 999, '../../public/images/product_images/laptop.jpg');
 
 
 
@@ -43,7 +41,6 @@ VALUES (05, 'laptop', 'Selling brand new laptop, 15 inch screen', 999, '../../pu
 
 INSERT INTO favorites (id, product_id, user_id)
 VALUES (382, 03, 1);
-
 
 INSERT INTO favorites (id, product_id, user_id)
 VALUES (041, 02, 1);

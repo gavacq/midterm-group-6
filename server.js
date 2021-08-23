@@ -1,3 +1,5 @@
+// -------------- DEPENDENCIES & SETUP ------------------ //
+
 // load .env data into process.env
 require('dotenv').config();
 
@@ -5,9 +7,9 @@ require('dotenv').config();
 const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
+const app        = express();
 const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
-const app        = express();
 const morgan     = require('morgan');
 
 // PG database client/connection setup
@@ -29,26 +31,38 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
+
 app.use(express.static("public"));
 
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+// ------------------------- SET UP ROUTING ---------------------------------- //
 
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
-// Note: mount other resources here, using the same pattern above
+const chats  = require('./routes/chats');
+const products  = require('./routes/products');
 
+// use chats.js file to handle endpoints starting with /chats
+// use products.js file to handle endpoints starting with /products
+app.use('/chats', chats);
+app.use('/products', products);
 
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("index");
+// GET HOME PAGE (root path)
+
+app.get('/', (req, res) => {
+  // redirect to /products
+  res.redirect('/products');
+
+  // render EJS template for home page
+  res.render('index');
 });
+
+// GET error 404 page
+// Shown when the user requests a URL that does not exist
+
+app.get('/404', (req, res) => {
+  res.send('ERROR 404: The page you are looking for cannot be found.');
+  // STRETCH: render a 404 page
+});
+
+// -------------------- Listen on specified port --------------------- //
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

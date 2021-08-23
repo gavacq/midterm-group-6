@@ -1,3 +1,6 @@
+// -------------- DEPENDENCIES & SETUP ------------------ //
+
+
 // load .env data into process.env
 require('dotenv').config();
 
@@ -38,11 +41,13 @@ app.use(express.static("public"));
 const chats  = require('./routes/chats');
 const products  = require('./routes/products');
 
-app.use('/chats', chats);
-app.use('/products', products);
 
 // use chats.js file to handle endpoints starting with /chats
 // use products.js file to handle endpoints starting with /products
+app.use('/chats', chats);
+app.use('/products', products);
+
+
 
 
 // GET HOME PAGE (root path)
@@ -53,6 +58,17 @@ app.get('/', (req, res) => {
 
   // render EJS template for home page
   res.render('index');
+});
+
+
+
+// GET error 404 page
+// Shown when the user requests a URL that does not exist
+
+app.get('/404', (req, res) => {
+
+  res.send('ERROR 404: The page you are looking for cannot be found.');
+  // STRETCH: render a 404 page
 });
 
 

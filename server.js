@@ -34,15 +34,26 @@ app.use("/styles", sass({
 
 app.use(express.static("public"));
 
+// ----------------------- set up helpers -------------------- //
+
+
+
 // ------------------------- SET UP ROUTING ---------------------------------- //
 
-const chats  = require('./routes/chats');
+// import object containing all queries relating to /products
+const productsQueries = require('./db/queries/productsQueries')(db);
+
+// products is a function imported from products.js
 const products  = require('./routes/products');
+const productsRouter = products(productsQueries);
+
+const chats  = require('./routes/chats');
+
 
 // use chats.js file to handle endpoints starting with /chats
 // use products.js file to handle endpoints starting with /products
 app.use('/chats', chats);
-app.use('/products', products);
+app.use('/products', productsRouter);
 
 // GET HOME PAGE (root path)
 

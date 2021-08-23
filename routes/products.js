@@ -6,19 +6,28 @@ const express = require('express');
 const router = express.Router();
 
 
+
 // ---------------- Requests for root: /products -------------------- //
 
-router
+module.exports = productsQueries => {
+
+  router
   .route('/')
   .get((req, res) => {
-    res.send(`GET /products was successful. ${JSON.stringify(req.query)}`);
+
+    productsQueries.getProducts()
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => console.log(err));
+
+    //res.send(`GET /products was successful. ${JSON.stringify(req.query)}`);
   })
   .post((req, res) => {
     res.send('POST to /products was successful. Admin adds product.');
   });
 
   // NOTE: if admin cookies is set, the favorites filter should be deactivated.
-
 
  // ---------------- Requests for other routes in /products/ -------------------- //
 
@@ -45,10 +54,10 @@ router
     res.send('POST to /:product_id/sold was successful. Admin marks product as sold.');
   });
 
-
-
+  return router;
+}
 
 
 
   // NOTE: DO NOT export router as an object { router } -> this causes an error
-  module.exports = router;
+  // module.exports = router;

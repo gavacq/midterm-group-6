@@ -10,9 +10,14 @@ const router = express.Router();
 
 router
   .route('/')
+  .get((req, res) => {
+    res.send(`GET /products was successful. ${JSON.stringify(req.query)}`);
+  })
   .post((req, res) => {
     res.send('POST to /products was successful. Admin adds product.');
   });
+
+  // NOTE: if admin cookies is set, the favorites filter should be deactivated.
 
 
  // ---------------- Requests for other routes in /products/ -------------------- //
@@ -41,12 +46,6 @@ router
   });
 
 
-router
-  .route('/products/[query_params]')
-  .get((req, res) => {
-    res.send('GET /products/[query_params] was successful. Filter by price or favorites.');
-  });
-  // NOTE: if admin cookies is set, the favorites filter should be deactivated.
 
 
 

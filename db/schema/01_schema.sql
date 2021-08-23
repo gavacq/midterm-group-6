@@ -48,11 +48,15 @@ CREATE TABLE favorites (
 -- messages table
 CREATE TABLE messages (
   id SERIAL PRIMARY KEY,
-  product_id INTEGER REFERENCES products(id),
-  user_id INTEGER REFERENCES users(id),
+  chat_id INTEGER REFERENCES chats(id),
   is_admin BOOLEAN NOT NULL DEFAULT FALSE,
   datetime TIMESTAMP NOT NULL,
   content TEXT NOT NULL
 );
 
-
+-- chats table
+CREATE TABLE chats (
+  id SERIAL PRIMARY KEY,
+  product_id INTEGER REFERENCES products(id),
+  user_id INTEGER REFERENCES users(id)
+);

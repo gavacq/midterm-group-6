@@ -14,6 +14,11 @@ router
   });
 
 
+
+   // ---------------- Requests for other routes in /products/ -------------------- //
+
+// below code needs to be updated
+
 // requests for /favs/chatid
 router
   .route('/:chatid')

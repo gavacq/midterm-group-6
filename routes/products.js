@@ -5,21 +5,50 @@
 const express = require('express');
 const router = express.Router();
 
+
+// ---------------- Requests for root: /products -------------------- //
+
 router
   .route('/')
-  .get((req, res) => {
-
-    res.send('GET /products was successful.');
-
-    // render EJS template for home page -> not needed??
-    res.render('index');
+  .post((req, res) => {
+    res.send('POST to /products was successful. Admin adds product.');
   });
 
-router
+
+ // ---------------- Requests for other routes in /products/ -------------------- //
+
+ router
   .route('/:product_id')
   .get((req, res) => {
-
+    res.send('GET to /products/:product_id was successful. User or admin views product modal.');
+  })
+  .post((req, res) => {
+    res.send('POST to /products/:product_id was successful. User favorites product.');
   });
+
+
+router
+  .route('/:product_id/delete')
+  .post((req, res) => {
+    res.send('admin has deleted the product');
+  });
+
+
+router
+  .route('/:product_id/sold')
+  .post((req, res) => {
+    res.send('POST to /:product_id/sold was successful. Admin marks product as sold.');
+  });
+
+
+router
+  .route('/products/[query_params]')
+  .get((req, res) => {
+    res.send('GET /products/[query_params] was successful. Filter by price or favorites.');
+  });
+  // NOTE: if admin cookies is set, the favorites filter should be deactivated.
+
+
 
 
   // NOTE: DO NOT export router as an object { router } -> this causes an error

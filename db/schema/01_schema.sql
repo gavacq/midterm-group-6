@@ -1,16 +1,11 @@
 
--- NOTES
--- all tables are in this file (renamed from 01_users to 01_schema)
--- renamed photo_path to image_path
--- added DEFAULT FALSE to is_sold in products table
-
-
 
 -- Drop any existing tables to start fresh
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS products CASCADE;
-DROP TABLE IF EXISTS favorites CASCADE;
 DROP TABLE IF EXISTS messages CASCADE;
+DROP TABLE IF EXISTS favorites CASCADE;
+DROP TABLE IF EXISTS chats CASCADE;
 
 
 -- users table
@@ -36,6 +31,14 @@ CREATE TABLE products (
   is_sold BOOLEAN NOT NULL DEFAULT FALSE
 );
 
+-- messages table
+CREATE TABLE messages (
+  id SERIAL PRIMARY KEY,
+  chat_id INTEGER REFERENCES chats(id),
+  from_admin BOOLEAN NOT NULL DEFAULT FALSE,
+  datetime TIMESTAMP NOT NULL,
+  content TEXT NOT NULL
+);
 
 -- favorites table
 CREATE TABLE favorites (
@@ -44,15 +47,12 @@ CREATE TABLE favorites (
   user_id INTEGER REFERENCES users(id)
 );
 
-
--- messages table
-CREATE TABLE messages (
+-- chats table
+CREATE TABLE chats (
   id SERIAL PRIMARY KEY,
   product_id INTEGER REFERENCES products(id),
-  user_id INTEGER REFERENCES users(id),
-  is_admin BOOLEAN NOT NULL DEFAULT FALSE,
-  datetime TIMESTAMP NOT NULL,
-  content TEXT NOT NULL
+  user_id INTEGER REFERENCES users(id)
 );
+
 
 

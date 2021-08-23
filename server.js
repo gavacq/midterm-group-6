@@ -55,7 +55,7 @@ app.use('/products', products);
 app.get('/', (req, res) => {
 
   // redirect to /products
-  res.redirect('/products');
+  // res.redirect('/products');
 
   // render EJS template for home page
   res.render('index');

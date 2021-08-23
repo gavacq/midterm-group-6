@@ -1,24 +1,36 @@
-require('dotenv').config();
+// require('dotenv').config();
 
-const express = require('express');
-const router  = express.Router();
+// const express = require('express');
+// const router  = express.Router();
 
-module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.getAllProducts()
-      .then(
-        rows=>{
-          res.render('index', {rowarray: rows});
-        })
+// module.exports = (db) => {
+//   router.get("/", (req, res) => {
+//     db.getAllProducts()
+//       .then(
+//         data=>{
+//           res.render('index', {rowarray: rows});
+//         })
     
-      .catch(e => {
-        console.error(e);
-        res.send(e);
-      });
+//       .catch(e => {
+//         console.error(e);
+//         res.send(e);
+//       });
 
+//       tweetsRoutes.get("/", function(req, res) {
+//         DataHelpers.getTweets((err, tweets) => {
+//           if (err) {
+//             res.status(500).json({ error: err.message });
+//           } else {
+//             res.json(tweets);
+//           }
+//         });
+//       });
 
-  return router;
-}
+//       router.get('messages',(req, res) => {
+
+//       })
+//   return router;
+// }
 
 
   //   console.log("SEARCH BODY", req.query);

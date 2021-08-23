@@ -5,9 +5,9 @@ require('dotenv').config();
 const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
+const app        = express();
 const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
-const app        = express();
 const morgan     = require('morgan');
 
 // PG database client/connection setup
@@ -29,26 +29,34 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
+
 app.use(express.static("public"));
 
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
 
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
-// Note: mount other resources here, using the same pattern above
+// ------------------------- SET UP ROUTING ---------------------------------- //
+
+const chats  = require('./chats');
+const products  = require('./products');
+
+app.use('/chats', chats);
+app.use('/products', products);
+
+// use chats.js file to handle endpoints starting with /chats
+// use products.js file to handle endpoints starting with /products
 
 
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("index");
+// GET HOME PAGE (root path)
+
+app.get('/', (req, res) => {
+
+  res.send('GET / successful');
+
+  res.render('index');
 });
+
+
+
+// -------------------- Listen on specified port --------------------- //
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

@@ -1,33 +1,25 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-
 
 // ---------------- Requests for root: /chats -------------------- //
 
 router
-  .route('/')
+  .route("/")
+  //get request to /chats
   .get((req, res) => {
-    res.send('GET /chats was successful');
-
+    res.send("GET /chats was successful");
     // render EJS template for chats
-    res.render('chats');
+    // res.render("chats");
+  })
+  //post request to /chats, user creates chat
+  .post((req, res) => {
+    res.send("POST to /chats was successful. User adds a chat. \n");
   });
 
-
-
-   // ---------------- Requests for other routes in /products/ -------------------- //
-
-// below code needs to be updated
-
-// requests for /favs/chatid
-router
-  .route('/:chatid')
-  .get((req, res) => {
-    res.send('request to /favs/:chatid was successful');
-  }).post((req, res) => {
-    res.send('user sends a message');
-  });
-
+// post request to /chats/:chat_id, admin/user sends a message
+router.route("/:chat_id").post((req, res) => {
+  res.send("admin/user sends a message. \n");
+});
 
 // NOTE: DO NOT export router as an object { router } -> this causes an error
 module.exports = router;

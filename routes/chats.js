@@ -1,21 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-
 // ---------------- Requests for root: /chats -------------------- //
 
 router
   .route('/')
   .get((req, res) => {
-    res.send('GET /chats was successful');
+    // res.send('GET /chats was successful');
 
     // render EJS template for chats
     res.render('chats');
   });
 
-
-
-   // ---------------- Requests for other routes in /products/ -------------------- //
+// ---------------- Requests for other routes in /products/ -------------------- //
 
 // below code needs to be updated
 
@@ -27,7 +24,6 @@ router
   }).post((req, res) => {
     res.send('user sends a message');
   });
-
 
 // NOTE: DO NOT export router as an object { router } -> this causes an error
 module.exports = router;

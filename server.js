@@ -35,8 +35,8 @@ app.use(express.static("public"));
 
 // ------------------------- SET UP ROUTING ---------------------------------- //
 
-const chats  = require('./chats');
-const products  = require('./products');
+const chats  = require('./routes/chats');
+const products  = require('./routes/products');
 
 app.use('/chats', chats);
 app.use('/products', products);
@@ -49,11 +49,11 @@ app.use('/products', products);
 
 app.get('/', (req, res) => {
 
-  res.send('GET / successful');
+  res.send('GET home page was successful');
 
+  // render EJS template for home page
   res.render('index');
 });
-
 
 
 // -------------------- Listen on specified port --------------------- //

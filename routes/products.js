@@ -20,7 +20,7 @@ router
     const options = {
       minimumPrice: req.query.minimumPrice,
       maximumPrice: req.query.maximumPrice
-    }
+    };
 
     // user or admin views all products in home page
     productsQueries.getProducts(options)
@@ -61,6 +61,10 @@ router
  router
   .route('/:productId')
   .get((req, res) => {
+
+    const product = {
+      productId: req.params.productId
+    }
 
     // user or admin views a product modal
     productsQueries.viewProduct(product)

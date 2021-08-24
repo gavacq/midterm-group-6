@@ -17,6 +17,11 @@ router
   .route('/')
   .get((req, res) => {
 
+    const options = {
+      minimumPrice: req.query.minimumPrice,
+      maximumPrice: req.query.maximumPrice
+    }
+
     // user or admin views all products in home page
     productsQueries.getProducts(options)
     .then(data => {
@@ -29,6 +34,14 @@ router
 
     // check that user is admin
     if (req.session.userId === adminId) {
+
+      const product = {
+        productId: req.params.productId,
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price,
+        imagePath: req.body.imagePath
+      }
 
       // admin adds a product for sale
       productsQueries.postNewProduct(product)
@@ -46,7 +59,7 @@ router
  // ---------------- Requests for other routes in /products/ -------------------- //
 
  router
-  .route('/:product_id')
+  .route('/:productId')
   .get((req, res) => {
 
     // user or admin views a product modal
@@ -62,8 +75,14 @@ router
     // check that user is NOT admin
     if (req.session.userId !== adminId) {
 
+
+      const product = {
+        productId: req.params.productId,
+        favorite: req.body.favorite
+      }
+
       // user adds a product to favorites
-      productsQueries.addToFavorites(product)
+      productsQueries.addToFavorites(product, req.session.userId)
         .then(data => {
           res.json(data);
         })
@@ -81,12 +100,16 @@ router
      // check that user is admin
      if (req.session.userId === adminId) {
 
-      // admin deletes a product
-      productsQueries.deleteProduct(product)
-        .then(data => {
-          res.json(data);
-        })
-        .catch(err => console.log(err));
+        const product = {
+          productId: req.params.productId
+        }
+
+        // admin deletes a product
+        productsQueries.deleteProduct(product)
+          .then(data => {
+            res.json(data);
+          })
+          .catch(err => console.log(err));
 
       }
 
@@ -99,6 +122,10 @@ router
 
      // check that user is admin
      if (req.session.userId === adminId) {
+
+      const product = {
+        productId: req.params.productId
+      }
 
       // admin marks a product as sold
       productsQueries.markAsSold(product)

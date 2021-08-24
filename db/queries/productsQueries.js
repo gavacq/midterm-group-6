@@ -24,25 +24,25 @@ module.exports = db => {
                          JOIN favorites ON product_id = products.id
                          JOIN users ON user_id = users.id`;
 
-
+/*
       // --------- the filter by favorites part is not functional yet -----------//
       // FILTER BY FAVS: return only favorites
       // when the user clicks on fav button
       if (true) {
       `WHERE user_id = ${options.userId}`
-      }
+      } */
 
       // -------------- filter by price -------------------- //
 
       // FILTER BY PRICE: minimum price
-      if (options.minimum_price) {
-        queryParams.push(`${options.minimum_price}`);
+      if (options.minimumPrice) {
+        queryParams.push(`${options.minimumPrice}`);
         filters.push(`price >= $${queryParams.length}`);
       }
 
       // FILTER BY PRICE: maximum price
-      if (options.maximum_price) {
-        queryParams.push(`${options.maximum_price}`);
+      if (options.maximumPrice) {
+        queryParams.push(`${options.maximumPrice}`);
         filters.push(`price >= $${queryParams.length}`);
       }
 
@@ -68,7 +68,7 @@ module.exports = db => {
       VALUES ($1, $2, $3, $4)
       RETURNING *`; // NOTE: not sure if RETURNING * is needed
 
-      const queryParams = [product.name, product.description, product.price, product.image_path];
+      const queryParams = [product.name, product.description, product.price, product.imagePath];
 
       return db
       .query(queryString, queryParams)
@@ -91,13 +91,13 @@ module.exports = db => {
     },
 
     // USER: add a product to favorites
-    addToFavorites(product) {
+    addToFavorites(product, userId) {
 
       const queryString = `INSERT INTO favorites (product_id, user_id)
                            WHERE product_id = $1
                            AND user_id = $2`;
 
-      const queryParams = [product.productId, /* userId */];
+      const queryParams = [product.productId, userId];
 
       return db
       .query(queryString, queryParams)

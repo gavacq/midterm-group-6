@@ -7,11 +7,49 @@ function getProducts(params) {
   return $.ajax({url, });
 }
 
-const addProduct = function(data) {
+const deleteProduct = function(productId) {
+  return $.ajax({
+    method: "POST",
+    url: `/products/${productId}/delete`
+  });
+};
+
+const addToFavorites = function(productId) {
+  const data = {favorite: true};
+
+  return $.ajax({
+    method: "POST",
+    url: `/products/${productId}`,
+    data
+  });
+};
+
+const removeFromFavorites = function(productId) {
+  const data = {favorite: false};
+
+  return $.ajax({
+    method: "POST",
+    url: `/products/${productId}`,
+    data
+  });
+};
+
+const postNewProduct = function(data) {
   return $.ajax({
     method: "POST",
     url: "/products",
     data,
+  });
+};
+
+const viewProduct = function(productId) {
+  return $.ajax({url: `/products/${productId}`});
+};
+
+const markAsSold = function(productId) {
+  return $.ajax({
+    method: "POST",
+    url: `/products/${productId}/sold`,
   });
 };
 
@@ -23,42 +61,26 @@ const addProduct = function(data) {
   });
 };
 
-const addProduct = function(data) {
+const getChats = function() {
+  return $.ajax({url: "/chats"});
+};
+
+const createChat = function(data) {
   return $.ajax({
     method: "POST",
-    url: "/products",
+    url: "/chats",
     data,
   });
 };
 
-const addProduct = function(data) {
+const sendMessage = function(chatId, data) {
   return $.ajax({
     method: "POST",
-    url: "/products",
+    url: `/chats/${chatId}`,
     data,
   });
 };
 
-const addProduct = function(data) {
-  return $.ajax({
-    method: "POST",
-    url: "/products",
-    data,
-  });
-};
-
-const addProduct = function(data) {
-  return $.ajax({
-    method: "POST",
-    url: "/products",
-    data,
-  });
-};
-
-const addProduct = function(data) {
-  return $.ajax({
-    method: "POST",
-    url: "/products",
-    data,
-  });
+const viewChat = function(chatId) {
+  return $.ajax({url: `/chats/${chatId}`});
 };

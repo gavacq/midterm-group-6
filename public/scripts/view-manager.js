@@ -28,7 +28,7 @@ $(() => {
         $error.remove();
         viewManager.show('productList');
       }, 2000);
-        
+          
       break;
     }
     }

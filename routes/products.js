@@ -137,7 +137,6 @@ router
           res.json(data);
         })
         .catch(err => console.log(err));
-
      }
 
   });

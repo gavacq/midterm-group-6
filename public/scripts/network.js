@@ -1,11 +1,11 @@
-function getProducts(params) {
+const getProducts = function(params) {
   let url = "/products";
   if (params) {
     url += "?" + params;
   }
   
   return $.ajax({url, });
-}
+};
 
 const deleteProduct = function(productId) {
   return $.ajax({

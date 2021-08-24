@@ -68,10 +68,10 @@ app.use('/chats', chats);
 
 
 // GET LOGIN PATH
-app.get('/login', (req, res) => {
+app.get('/login/:userId', (req, res) => {
 
   // Create session cookies
-  request.session.user_id = userID;
+  req.session.userId = req.params.userId;
 
   // redirect to /
   res.redirect('/');

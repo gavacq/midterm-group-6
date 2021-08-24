@@ -1,10 +1,10 @@
 // See: https://sass-lang.com/
+// run "npm run sass-watch" to sync the css files
 
 body {
-  background-color: #EEE;
-
+  background-color: #C7EFCF;
   h1 {
-    color: red
+    color: #d6d1b1;
   }
 }
 
@@ -15,8 +15,12 @@ body {
   justify-content:space-between;
   align-items: center;
   width: 100%;
-  color: blue;
-  background-color: red;
+  color: #F0B67F;
+  font-family:'Open Sans', sans-serif;
+  font-size: xx-large;
+  font-style: italic;
+  font-weight: bold;
+  background-color: #EEF5DB;
   top: 0;
 
   .title {
@@ -25,32 +29,13 @@ body {
 
   .nav-button {
     padding-right: 2em;
-    color: #4056a1;
+    color: #F0B67F;
     i {
       padding-left: 0.2em;
     }
     i:hover {
-      color: orange;
+      color: #fe5f55;
     }
   }
 
-  // article.tweet footer {
-  //   box-sizing: content-box;
-  //   display: flex;
-  //   flex-direction: row;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   padding: 0.5em 1em;
-  
-  //   div {
-  //     color: #4056a1;
-  //     i {
-  //       padding-left: 0.2em;
-  //     }
-  //     i:hover {
-  //       color: orange;
-  //     }
-  //   }
-  // }
-  
 }

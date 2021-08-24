@@ -75,7 +75,22 @@ module.exports = db => {
       .query(queryString, queryParams)
       .then(result => result.rows)
       .catch(error => error.message);
-    }
+    },
+
+    viewProduct(product) {
+
+
+      const queryString = `SELECT * FROM products
+                           WHERE products.id = $1`;
+
+      const queryParams = [product.productId];
+
+      return db
+      .query(queryString, queryParams)
+      .then(result => result.rows)
+      .catch(error => error.message);
+    },
+
 
 
 

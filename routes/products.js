@@ -40,7 +40,14 @@ router
  router
   .route('/:product_id')
   .get((req, res) => {
-    res.send('GET to /products/:product_id was successful. User or admin views product modal.');
+
+    productsQueries.viewProduct(product)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => console.log(err));
+
+    //res.send('GET to /products/:product_id was successful. User or admin views product modal.');
   })
   .post((req, res) => {
     res.send('POST to /products/:product_id was successful. User favorites product.');

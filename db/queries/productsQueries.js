@@ -10,9 +10,10 @@ module.exports = db => {
   // return an object which will contain these helper functions as methods
   return {
 
+    // options is an object that corresponds to req.params
     getProducts(options) {
 
-      // array to hold parameters that MAY be entered in the query
+      // array to hold parameters that may be entered in the query
       const queryParams = [];
 
       // array to hold each query filter
@@ -23,12 +24,15 @@ module.exports = db => {
                          JOIN favorites ON product_id = products.id
                          JOIN users ON user_id = users.id`;
 
+
+      // --------- the filter by favorites part is not functional yet -----------//
+      // FILTER BY FAVS: return only favorites
       // when the user clicks on fav button
       if (true) {
-        // FILTER BY FAVS: return only favorites
       `WHERE user_id = ${options.userId}`
       }
 
+      // -------------- filter by price -------------------- //
 
       // FILTER BY PRICE: minimum price
       if (options.minimum_price) {
@@ -57,10 +61,23 @@ module.exports = db => {
 
     },
 
-    // admin only
-    postNewProduct() {
-      //insert in produces
+    // admin only: insert new product in /products
+    // the products object will contain parameters entered by the admin (req.params)
+    postNewProduct(product) {
+
+      const queryString = `INSERT INTO products (name, description, price, image_path)
+      VALUES ($1, $2, $3, $4)
+      RETURNING *`; // NOTE: not sure if RETURNING * is needed
+
+      const queryParams = [product.name, product.description, product.price, product.image_path];
+
+      return db
+      .query(queryString, queryParams)
+      .then(result => result.rows)
+      .catch(error => error.message);
     }
+
+
 
   }
 

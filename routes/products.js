@@ -15,16 +15,22 @@ router
   .route('/')
   .get((req, res) => {
 
-    productsQueries.getProducts()
+    productsQueries.getProducts(options)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => console.log(err));
+    //res.send(`GET /products was successful. ${JSON.stringify(req.query)}`);
+  })
+  .post((req, res) => {
+
+    productsQueries.postNewProduct(product)
     .then(data => {
       res.json(data);
     })
     .catch(err => console.log(err));
 
-    //res.send(`GET /products was successful. ${JSON.stringify(req.query)}`);
-  })
-  .post((req, res) => {
-    res.send('POST to /products was successful. Admin adds product.');
+    //res.send('POST to /products was successful. Admin adds product.');
   });
 
   // NOTE: if admin cookies is set, the favorites filter should be deactivated.
@@ -53,6 +59,8 @@ router
   .post((req, res) => {
     res.send('POST to /:product_id/sold was successful. Admin marks product as sold.');
   });
+
+
 
   return router;
 }

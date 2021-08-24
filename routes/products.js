@@ -11,7 +11,7 @@ const router = express.Router();
 
 module.exports = productsQueries => {
 
-  router
+router
   .route('/')
   .get((req, res) => {
 

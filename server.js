@@ -34,17 +34,16 @@ app.use("/styles", sass({
 
 app.use(express.static("public"));
 
-// ----------------------- set up helpers -------------------- //
 
-
-
-// ------------------------- SET UP ROUTING ---------------------------------- //
+// ------------------------- SET UP ROUTING & HELPERS ---------------------------------- //
 
 // import object containing all queries relating to /products
 const productsQueries = require('./db/queries/productsQueries')(db);
 
 // products is a function imported from products.js
 const products  = require('./routes/products');
+
+// productsRouter is a router object for /products
 const productsRouter = products(productsQueries);
 
 const chats  = require('./routes/chats');
@@ -52,8 +51,9 @@ const chats  = require('./routes/chats');
 
 // use chats.js file to handle endpoints starting with /chats
 // use products.js file to handle endpoints starting with /products
-app.use('/chats', chats);
 app.use('/products', productsRouter);
+app.use('/chats', chats);
+
 
 // GET HOME PAGE (root path)
 
@@ -64,6 +64,7 @@ app.get('/', (req, res) => {
   // render EJS template for home page
   res.render('index');
 });
+
 
 // GET error 404 page
 // Shown when the user requests a URL that does not exist

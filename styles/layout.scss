@@ -4,6 +4,53 @@ body {
   background-color: #EEE;
 
   h1 {
-    color: #244751;
+    color: red
   }
+}
+
+.navbar {
+  height: 100px;
+  display: flex;
+  flex-direction:row;
+  justify-content:space-between;
+  align-items: center;
+  width: 100%;
+  color: blue;
+  background-color: red;
+  top: 0;
+
+  .title {
+    padding-left: 2em;
+  }
+
+  .nav-button {
+    padding-right: 2em;
+    color: #4056a1;
+    i {
+      padding-left: 0.2em;
+    }
+    i:hover {
+      color: orange;
+    }
+  }
+
+  // article.tweet footer {
+  //   box-sizing: content-box;
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: space-between;
+  //   align-items: center;
+  //   padding: 0.5em 1em;
+  
+  //   div {
+  //     color: #4056a1;
+  //     i {
+  //       padding-left: 0.2em;
+  //     }
+  //     i:hover {
+  //       color: orange;
+  //     }
+  //   }
+  // }
+  
 }

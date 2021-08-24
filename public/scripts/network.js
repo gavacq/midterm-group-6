@@ -14,3 +14,51 @@ const addProduct = function(data) {
     data,
   });
 };
+
+const addProduct = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/products",
+    data,
+  });
+};
+
+const addProduct = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/products",
+    data,
+  });
+};
+
+const addProduct = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/products",
+    data,
+  });
+};
+
+const addProduct = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/products",
+    data,
+  });
+};
+
+const addProduct = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/products",
+    data,
+  });
+};
+
+const addProduct = function(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/products",
+    data,
+  });
+};

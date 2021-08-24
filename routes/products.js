@@ -5,6 +5,8 @@
 const express = require('express');
 const router = express.Router();
 
+const adminId = require('./constants');
+
 
 
 // ---------------- Requests for root: /products -------------------- //
@@ -15,6 +17,7 @@ router
   .route('/')
   .get((req, res) => {
 
+    // user or admin views all products in home page
     productsQueries.getProducts(options)
     .then(data => {
       res.json(data);
@@ -24,13 +27,18 @@ router
   })
   .post((req, res) => {
 
-    productsQueries.postNewProduct(product)
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => console.log(err));
+    // check that user is admin
+    if (req.session.userId === adminId) {
 
-    //res.send('POST to /products was successful. Admin adds product.');
+      // admin adds a product for sale
+      productsQueries.postNewProduct(product)
+        .then(data => {
+          res.json(data);
+        })
+        .catch(err => console.log(err));
+
+    }
+
   });
 
   // NOTE: if admin cookies is set, the favorites filter should be deactivated.
@@ -41,23 +49,28 @@ router
   .route('/:product_id')
   .get((req, res) => {
 
+    // user or admin views a product modal
     productsQueries.viewProduct(product)
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => console.log(err));
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => console.log(err));
 
-    //res.send('GET to /products/:product_id was successful. User or admin views product modal.');
   })
   .post((req, res) => {
 
-    productsQueries.addToFavorites(product)
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => console.log(err));
+    // check that user is NOT admin
+    if (req.session.userId !== adminId) {
 
-    // res.send('POST to /products/:product_id was successful. User favorites product.');
+      // user adds a product to favorites
+      productsQueries.addToFavorites(product)
+        .then(data => {
+          res.json(data);
+        })
+        .catch(err => console.log(err));
+
+      }
+
   });
 
 
@@ -65,13 +78,18 @@ router
   .route('/:product_id/delete')
   .post((req, res) => {
 
-    productsQueries.deleteProduct(product)
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => console.log(err));
+     // check that user is admin
+     if (req.session.userId === adminId) {
 
-    //res.send('admin has deleted the product');
+      // admin deletes a product
+      productsQueries.deleteProduct(product)
+        .then(data => {
+          res.json(data);
+        })
+        .catch(err => console.log(err));
+
+      }
+
   });
 
 
@@ -79,15 +97,19 @@ router
   .route('/:product_id/sold')
   .post((req, res) => {
 
-    productsQueries.markAsSold(product)
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => console.log(err));
+     // check that user is admin
+     if (req.session.userId === adminId) {
 
-    //res.send('POST to /:product_id/sold was successful. Admin marks product as sold.');
+      // admin marks a product as sold
+      productsQueries.markAsSold(product)
+        .then(data => {
+          res.json(data);
+        })
+        .catch(err => console.log(err));
+
+     }
+
   });
-
 
 
   return router;

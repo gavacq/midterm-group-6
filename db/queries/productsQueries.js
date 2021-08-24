@@ -86,7 +86,7 @@ module.exports = db => {
 
       return db
       .query(queryString, queryParams)
-      .then(result => result.rows)
+      .then(result => console.log('product is being viewed.'))
       .catch(error => error.message);
     },
 
@@ -101,7 +101,7 @@ module.exports = db => {
 
       return db
       .query(queryString, queryParams)
-      .then(result => result.rows)
+      .then(result => console.log('product was added to favorites.'))
       .catch(error => error.message);
 
     },
@@ -115,7 +115,7 @@ module.exports = db => {
 
       return db
       .query(queryString, queryParams)
-      .then(result => result.rows)
+      .then(result => console.log('product was deleted.'))
       .catch(error => error.message);
     },
 
@@ -130,12 +130,10 @@ module.exports = db => {
 
       return db
       .query(queryString, queryParams)
-      .then(result => result.rows)
+      .then(result => console.log('product was marked as sold.'))
       .catch(error => error.message);
 
     }
-
-
 
 
   }

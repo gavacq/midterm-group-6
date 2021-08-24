@@ -6,7 +6,7 @@ $(() => {
   AppLib.viewManager = {test: "hello MyLib viewManager!"};
   console.log('view-manager: ', AppLib.viewManager);
 
-  window.viewManager.show = function(item) {
+  AppLib.viewManager.show = function(item) {
     AppLib.$productList.detach();
     AppLib.$searchForm.detach();
     AppLib.$chatList.detach();

@@ -12,7 +12,7 @@ const app        = express();
 const sass       = require("node-sass-middleware");
 const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
-
+const adminId = require('./constants');
 
 //
 
@@ -70,9 +70,9 @@ app.use('/chats', chats);
 // GET LOGIN PATH
 app.get('/login/:userId', (req, res) => {
 
-  // Create session cookies
+  // create session cookies
   req.session.userId = req.params.userId;
-
+if (req.session.userId === admin)
   // redirect to /
   res.redirect('/');
 });

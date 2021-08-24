@@ -78,7 +78,14 @@ router
 router
   .route('/:product_id/sold')
   .post((req, res) => {
-    res.send('POST to /:product_id/sold was successful. Admin marks product as sold.');
+
+    productsQueries.markAsSold(product)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => console.log(err));
+
+    //res.send('POST to /:product_id/sold was successful. Admin marks product as sold.');
   });
 
 

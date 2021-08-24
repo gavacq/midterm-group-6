@@ -117,6 +117,22 @@ module.exports = db => {
       .query(queryString, queryParams)
       .then(result => result.rows)
       .catch(error => error.message);
+    },
+
+    // ADMIN: mark a product as sold
+    markAsSold(product) {
+
+      const queryString = `UPDATE products
+                           SET is_sold = TRUE
+                           WHERE products.id = $1`;
+
+      const queryParams = [product.productId];
+
+      return db
+      .query(queryString, queryParams)
+      .then(result => result.rows)
+      .catch(error => error.message);
+
     }
 
 
@@ -131,3 +147,4 @@ module.exports = db => {
 // in addToFavorites, do we need 2 arguments to get both user id and product id,
 // or do we need to do a JOIN in the query?
 // options is an object that corresponds to req.params
+// when deleting a product, will that cascade to delete the entry in favs?

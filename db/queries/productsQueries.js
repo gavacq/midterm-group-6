@@ -79,7 +79,6 @@ module.exports = db => {
 
     viewProduct(product) {
 
-
       const queryString = `SELECT * FROM products
                            WHERE products.id = $1`;
 
@@ -91,10 +90,27 @@ module.exports = db => {
       .catch(error => error.message);
     },
 
+    addToFavorites(product) {
 
+      const queryString = `INSERT INTO favorites (product_id, user_id)
+                           WHERE products_id = $1
+                           AND user_id = $2`;
+
+      const queryParams = [product.productId, /* userId */];
+
+      return db
+      .query(queryString, queryParams)
+      .then(result => result.rows)
+      .catch(error => error.message);
+
+    }
 
 
   }
 
 };
 
+// --------- NOTES -------- //
+// not adding ids (serial primary key) in the inserts
+// in addToFavorites, do we need 2 arguments to get both user id and product id,
+// or do we need to do a JOIN in the query?

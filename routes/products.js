@@ -50,7 +50,14 @@ router
     //res.send('GET to /products/:product_id was successful. User or admin views product modal.');
   })
   .post((req, res) => {
-    res.send('POST to /products/:product_id was successful. User favorites product.');
+
+    productsQueries.addToFavorites(product)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => console.log(err));
+
+    // res.send('POST to /products/:product_id was successful. User favorites product.');
   });
 
 
@@ -72,7 +79,3 @@ router
   return router;
 }
 
-
-
-  // NOTE: DO NOT export router as an object { router } -> this causes an error
-  // module.exports = router;

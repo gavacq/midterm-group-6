@@ -10,7 +10,7 @@ module.exports = db => {
   // return an object which will contain these helper functions as methods
   return {
 
-    // options is an object that corresponds to req.params
+    // USER/ADMIN: view all products, or filter by price/favorites
     getProducts(options) {
 
       // array to hold parameters that may be entered in the query
@@ -61,8 +61,7 @@ module.exports = db => {
 
     },
 
-    // admin only: insert new product in /products
-    // the products object will contain parameters entered by the admin (req.params)
+    // ADMIN: insert new product in /products
     postNewProduct(product) {
 
       const queryString = `INSERT INTO products (name, description, price, image_path)
@@ -77,6 +76,7 @@ module.exports = db => {
       .catch(error => error.message);
     },
 
+    // USER/ADMIN: view a product modal
     viewProduct(product) {
 
       const queryString = `SELECT * FROM products
@@ -90,10 +90,11 @@ module.exports = db => {
       .catch(error => error.message);
     },
 
+    // USER: add a product to favorites
     addToFavorites(product) {
 
       const queryString = `INSERT INTO favorites (product_id, user_id)
-                           WHERE products_id = $1
+                           WHERE product_id = $1
                            AND user_id = $2`;
 
       const queryParams = [product.productId, /* userId */];
@@ -103,7 +104,22 @@ module.exports = db => {
       .then(result => result.rows)
       .catch(error => error.message);
 
+    },
+
+    // ADMIN: delete a product
+    deleteProduct(product) {
+      const queryString = `DELETE FROM products
+                           WHERE products.id = $1`;
+
+      const queryParams = [product.productId];
+
+      return db
+      .query(queryString, queryParams)
+      .then(result => result.rows)
+      .catch(error => error.message);
     }
+
+
 
 
   }
@@ -114,3 +130,4 @@ module.exports = db => {
 // not adding ids (serial primary key) in the inserts
 // in addToFavorites, do we need 2 arguments to get both user id and product id,
 // or do we need to do a JOIN in the query?
+// options is an object that corresponds to req.params

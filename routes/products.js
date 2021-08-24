@@ -64,7 +64,14 @@ router
 router
   .route('/:product_id/delete')
   .post((req, res) => {
-    res.send('admin has deleted the product');
+
+    productsQueries.deleteProduct(product)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => console.log(err));
+
+    //res.send('admin has deleted the product');
   });
 
 

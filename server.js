@@ -67,11 +67,19 @@ app.use('/products', productsRouter);
 app.use('/chats', chats);
 
 
+// GET LOGIN PATH
+app.get('/login', (req, res) => {
+
+  // Create session cookies
+  request.session.user_id = userID;
+
+  // redirect to /
+  res.redirect('/');
+});
+
 // GET HOME PAGE (root path)
 
 app.get('/', (req, res) => {
-  // redirect to /products
-  res.redirect('/products');
 
   // render EJS template for home page
   res.render('index');

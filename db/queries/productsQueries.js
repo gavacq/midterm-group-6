@@ -22,15 +22,15 @@ module.exports = db => {
       // start query with info that comes before the WHERE clause
       let queryString = `SELECT * FROM products`;
 
-      /*
       // --------- the filter by favorites part is not functional yet -----------//
       // FILTER BY FAVS: return only favorites
       // when the user clicks on fav button
-      if (true) {
-      JOIN favorites ON product_id = products.id
-      JOIN users ON user_id = users.id
-      `WHERE user_id = ${options.userId}`
-      } */
+      if (options.favorite) {
+        queryString += `
+          JOIN favorites ON product_id = products.id
+          JOIN users ON user_id = users.id
+          WHERE user_id = ${options.userId}`;
+      }
 
       // -------------- filter by price -------------------- //
 

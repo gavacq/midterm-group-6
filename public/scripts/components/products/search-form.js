@@ -1,9 +1,6 @@
 $(document).ready(function() {
 
-  // add empty object to AppLib library
-  AppLib.searchForm = {};
-
-  const $createSearchForm = $(
+  const $searchForm = $(
 
     `
       <form action = '/products' method = 'post' id = 'search-product-form'>
@@ -16,14 +13,31 @@ $(document).ready(function() {
         </div>
         <button type = 'submit'>Filter</button>
       </form>
-    `)
+    `);
 
-  // add the createSearchForm method to the searchForm object in the AppLib library
-   AppLib.$createSearchForm = $createSearchForm;
-
-  $createSearchForm.on('submit', function(event) {
-    event.preventDefault();
-    const data = $(this).serialize();
+    // create jQuery element for the favorite icon and add click event.
+    // this renders only the favorites.
+    $favoriteIcon = $(`<div id = "favorite-icon">Favorites button</div>`)
+    .on('click', function(event) {
+      event.preventDefault();
+      getProducts('favorite=true')
+      .then(function(json) {
+        AppLib.productList.createProductList(json);
+        AppLib.viewManager.show('productList');
+    })
   });
   
-}
+  // add the createSearchForm method to the searchForm object in the AppLib library
+  AppLib.$searchForm = $searchForm;
+
+  $searchForm.on('submit', function(event) {
+    event.preventDefault();
+    const data = $(this).serialize();
+
+    // send a request to /products with a URL encoded query string
+    getProducts(data).then(function(json) {
+      AppLib.productList.createProductList(json);
+      AppLib.viewManager.show('productList');
+    });
+  });
+});

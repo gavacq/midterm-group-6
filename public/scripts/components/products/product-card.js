@@ -1,30 +1,31 @@
-$(() => {
-  AppLib.productCard = {};
-  
-  function createProductCard(property, isReservation) {
-    return `
-    <article class="property-listing">
-        <section class="property-listing__preview-image">
-          <img src="${property.thumbnail_photo_url}" alt="house">
-        </section>
-        <section class="property-listing__details">
-          <h3 class="property-listing__title">${property.title}</h3>
-          <ul class="property-listing__details">
-            <li>number_of_bedrooms: ${property.number_of_bedrooms}</li>
-            <li>number_of_bathrooms: ${property.number_of_bathrooms}</li>
-            <li>parking_spaces: ${property.parking_spaces}</li>
-          </ul>
-          ${isReservation ?
-    `<p>${moment(property.start_date).format('ll')} - ${moment(property.end_date).format('ll')}</p>`
-    : ``}
-          <footer class="property-listing__footer">
-            <div class="property-listing__rating">${Math.round(property.average_rating * 100) / 100}/5 stars</div>
-            <div class="property-listing__price">$${property.cost_per_night / 100.0}/night</div>
-          </footer>
-        </section>
-      </article>
-    `;
-  }
+// NOTES:
+//  LINE 18 - 19 ONLY IF ADMIN: show if the item is in the favorites - render the heart icon here?
 
-  window.propertyListing.createListing = createListing;
+$(document).ready(function() {
+  // add empty object to AppLib library
+  AppLib.productCard = {};
+
+  // FUNCTION: generates the HTML for the modal view of a product.
+  // if admin, the favorites part should not be generated.
+  const createProductCard = (product) => {
+    return `
+    <article class = 'product-card'>
+      <section class = 'product-card-preview-image'>
+        <img src = '${product.imagePath}'} alt = 'product-preview'>    
+      </section>
+      <section class = 'product-details'>
+        <h3 class = 'product-card-name'>${product.name}</h3>
+        <ul class = 'product-details'> 
+          <li>Price: ${product.price}</li>
+          <li>Description: ${product.description}</li>
+        </ul>
+        ${product.favorite ?
+    `This product is in your favorites` : ``}
+      </section> 
+    </article>
+    `;
+  };
+
+  // add the createProductCard method to the productCard object in the AppLib library
+  AppLib.productCard.createProductCard = createProductCard;
 });

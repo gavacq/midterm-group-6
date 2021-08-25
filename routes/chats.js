@@ -1,29 +1,70 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+
+const adminId = require("../constants");
 
 // ---------------- Requests for root: /chats -------------------- //
 
-router
-  .route('/')
-  .get((req, res) => {
-    // res.send('GET /chats was successful');
+module.exports = (chatsQueries) => {
+  router
+    .route("/")
+    //get request to /chats
+    .get((req, res) => {
+      // res.send("GET /chats was successful");
+      chatsQueries
+        .getChats()
+        .then((data) => {
+          res.json(data);
+        })
+        .catch((err) => console.log(err));
+      // render EJS template for chats
+      // res.render("chats");
+    })
+    //post request to /chats, user creates chat
+    .post((req, res) => {
+      // check that user is NOT admin
+      if (req.session.userId !== adminId) {
+        const product = {productId: req.body.productId, };
+        chatsQueries
+          .createChat(product, req.session.userId, req.body.content)
+          .then((data) => {
+            res.json(data);
+            // res.send("POST to /chats was successful. User adds a chat. \n");
+          })
+          .catch((err) => console.log(err));
+      }
+    });
 
-    // render EJS template for chats
-    res.render('chats');
-  });
+  router
+    .route("/:chatId")
+    // user or admin views a chat
+    .get((req, res) => {
+      const chat = { chatId: req.params.chatId };
 
-// ---------------- Requests for other routes in /products/ -------------------- //
+      chatsQueries
+        .viewChat(chat)
+        .then((data) => {
+          res.json(data);
+        })
+        .catch((err) => console.log(err));
+    })
+    .post((req, res) => {
+      // check that user is NOT admin
+      
+      const chat = {
+        chatId: req.params.chatId,
+        from_admin: Boolean(req.session.userId === adminId),
+        content: req.body.content
+      };
 
-// below code needs to be updated
+      chatsQueries.sendMessage(chat)
+        .then(data => {
+          console.log('data', data);
+          res.json(data);
+        })
+        .catch(err => console.log(err));
+      // res.send("POST to /:chatId: admin/user sends a message. \n");
+    });
 
-// requests for /favs/chatid
-router
-  .route('/:chatid')
-  .get((req, res) => {
-    res.send('request to /favs/:chatid was successful');
-  }).post((req, res) => {
-    res.send('user sends a message');
-  });
-
-// NOTE: DO NOT export router as an object { router } -> this causes an error
-module.exports = router;
+  return router;
+};

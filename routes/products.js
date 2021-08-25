@@ -14,8 +14,8 @@ module.exports = productsQueries => {
     .route('/')
     .get((req, res) => {
       const options = {
-        minimumPrice: req.query.minimumPrice,
-        maximumPrice: req.query.maximumPrice
+        minimumPrice: req.query["minimum-price"],
+        maximumPrice: req.query["maximum-price"]
       };
 
       // user or admin views all products in home page

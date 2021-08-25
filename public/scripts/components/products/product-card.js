@@ -1,17 +1,19 @@
 // NOTES:
 //  LINE 18 - 19 ONLY IF ADMIN: show if the item is in the favorites - render the heart icon here?
-// NOTE: in the template strings should the variable names be req.body or product.etc ??
 
 $(document).ready(function() {
 
+  
+  // add empty object to AppLib library
+  AppLib.productCard = {};
+
   // FUNCTION: generates the HTML for the modal view of a product.
   // if admin, the favorites part should not be generated.
-  
-  const createProductCard = () => {
+  const createProductCard = (product) => {
     return `
     <article class = 'product-card'>
       <section class = 'product-card-preview-image'>
-        <img src = '${product.imagePath /* req.body.imagePath ??*/}'} alt = 'product-preview'>    
+        <img src = '${product.imagePath}'} alt = 'product-preview'>    
       </section>
       <section class = 'product-details'>
         <h3 class = 'product-card-name'>${product.name}</h3>
@@ -25,4 +27,8 @@ $(document).ready(function() {
     </article>
     `;
   };
+
+  // add the createProductCard method to the productCard object in the AppLib library
+  AppLib.productCard.createProductCard = createProductCard;
+
 });

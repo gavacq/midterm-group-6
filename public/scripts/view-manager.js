@@ -1,4 +1,5 @@
 $(() => {
+  // create empty object on the global window object, to avoid storing things in the global scope.
   window.AppLib = {};
 
   const $main = $('#main-content');

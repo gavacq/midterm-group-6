@@ -7,7 +7,6 @@ router
   .route("/")
   //get request to /chats
   .get((req, res) => {
-
     res.send("GET /chats was successful");
     // render EJS template for chats
     // res.render("chats");
@@ -21,7 +20,6 @@ router
 router.route("/:chat_id").post((req, res) => {
   res.send("admin/user sends a message. \n");
 });
-
 
 // NOTE: DO NOT export router as an object { router } -> this causes an error
 module.exports = router;

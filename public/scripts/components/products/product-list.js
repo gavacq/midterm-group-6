@@ -22,10 +22,10 @@ $(() => {
     clearProductCards();
     for (const productId in products) {
       const product = products[productId];
-      const productCard = AppLib.productCard.(property, isReservation);
-      addListing(listing);
+      const productCard = AppLib.productCard.createProductCard(product);
+      addProductCard(productCard);
     }
   }
 
-  window.productList.addProduct = addProduct;
+  window.productList.createProductList = createProductList;
 });

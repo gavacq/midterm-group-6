@@ -48,6 +48,8 @@ app.use(cookieSession({
 // ------------------------- SET UP ROUTING & HELPERS ---------------------------------- //
 
 // import object containing all queries relating to /products
+// const productsQueriesFunction = require("...")
+// const productsQueries = productsQueriesFunction(db)
 const productsQueries = require('./db/queries/productsQueries')(db);
 
 // products is a function imported from products.js
@@ -55,13 +57,17 @@ const products  = require('./routes/products');
 // productsRouter is a router object for /products
 const productsRouter = products(productsQueries);
 
+
+const chatsQueries = require('./db/queries/chatsQueries')(db);
+// chats is a function imported from chats.js
 const chats  = require('./routes/chats');
+const chatsRouter = chats(chatsQueries);
 
 
 // use chats.js file to handle endpoints starting with /chats
 // use products.js file to handle endpoints starting with /products
 app.use('/products', productsRouter);
-app.use('/chats', chats);
+app.use('/chats', chatsRouter);
 
 
 // GET LOGIN PATH

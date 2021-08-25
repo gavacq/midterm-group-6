@@ -53,14 +53,6 @@ const markAsSold = function(productId) {
   });
 };
 
-const addProduct = function(data) {
-  return $.ajax({
-    method: "POST",
-    url: "/products",
-    data,
-  });
-};
-
 const getChats = function() {
   return $.ajax({url: "/chats"});
 };

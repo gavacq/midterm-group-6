@@ -15,7 +15,9 @@ module.exports = productsQueries => {
     .get((req, res) => {
       const options = {
         minimumPrice: req.query["minimum-price"],
-        maximumPrice: req.query["maximum-price"]
+        maximumPrice: req.query["maximum-price"],
+        favorite: req.query.favorite,
+        userId: req.session.userId
       };
 
       // user or admin views all products in home page

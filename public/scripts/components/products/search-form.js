@@ -3,9 +3,9 @@ $(document).ready(function() {
   // add empty object to AppLib library
   AppLib.searchForm = {};
 
-  const createSearchForm = options => {
+  const $createSearchForm = $(
 
-    return `
+    `
       <form action = '/products' method = 'post' id = 'search-product-form'>
         <h3> Filter by price </h3>
         <div class = 'input-fields'>  
@@ -16,10 +16,14 @@ $(document).ready(function() {
         </div>
         <button type = 'submit'>Filter</button>
       </form>
-    `;
-  }
+    `)
 
   // add the createSearchForm method to the searchForm object in the AppLib library
-  AppLib.searchForm.createSearchForm = createSearchForm;
+   AppLib.$createSearchForm = $createSearchForm;
 
-});
+  $createSearchForm.on('submit', function(event) {
+    event.preventDefault();
+    const data = $(this).serialize();
+  });
+  
+}

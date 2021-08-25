@@ -6,13 +6,13 @@ const { response } = require("express");
 // export an anonymous function that takes db as a parameter
 // all product related queries will go here
 module.exports = db => {
-
   // return an object which will contain these helper functions as methods
   return {
 
     // USER/ADMIN: view all products, or filter by price/favorites
     getProducts(options) {
-
+      console.log('inside getProducts');
+      
       // array to hold parameters that may be entered in the query
       const queryParams = [];
 
@@ -20,15 +20,15 @@ module.exports = db => {
       const filters = [];
 
       // start query with info that comes before the WHERE clause
-      let queryString = `SELECT * FROM products
-                         JOIN favorites ON product_id = products.id
-                         JOIN users ON user_id = users.id`;
+      let queryString = `SELECT * FROM products`;
 
-/*
+      /*
       // --------- the filter by favorites part is not functional yet -----------//
       // FILTER BY FAVS: return only favorites
       // when the user clicks on fav button
       if (true) {
+      JOIN favorites ON product_id = products.id
+      JOIN users ON user_id = users.id
       `WHERE user_id = ${options.userId}`
       } */
 
@@ -46,24 +46,25 @@ module.exports = db => {
         filters.push(`price >= $${queryParams.length}`);
       }
 
-        // concatenate filters
+      // concatenate filters
       if (filters.length > 0) {
         queryString += 'WHERE ' + filters.join(' AND ');
       }
-
+      
       // complete queryString
-      queryString += `ORDER BY price;`;
+      queryString += ` ORDER BY price;`;
+      // queryString += ";";
 
+      console.log('queryString: ', queryString);
+      
       return db
-      .query(queryString, queryParams)
-      .then(result => result.rows)
-      .catch(error => error.message);
-
+        .query(queryString, queryParams)
+        .then(result => result.rows)
+        .catch(error => error.message);
     },
 
     // ADMIN: insert new product in /products
     postNewProduct(product) {
-
       const queryString = `INSERT INTO products (name, description, price, image_path)
       VALUES ($1, $2, $3, $4)
       RETURNING *`; // NOTE: not sure if RETURNING * is needed
@@ -71,28 +72,26 @@ module.exports = db => {
       const queryParams = [product.name, product.description, product.price, product.imagePath];
 
       return db
-      .query(queryString, queryParams)
-      .then(result => result.rows)
-      .catch(error => error.message);
+        .query(queryString, queryParams)
+        .then(result => result.rows)
+        .catch(error => error.message);
     },
 
     // USER/ADMIN: view a product modal
     viewProduct(product) {
-
       const queryString = `SELECT * FROM products
                            WHERE products.id = $1`;
 
       const queryParams = [product.productId];
 
       return db
-      .query(queryString, queryParams)
-      .then(result => console.log('product is being viewed.'))
-      .catch(error => error.message);
+        .query(queryString, queryParams)
+        .then(result => console.log('product is being viewed.'))
+        .catch(error => error.message);
     },
 
     // USER: add a product to favorites
     addToFavorites(product, userId) {
-
       const queryString = `INSERT INTO favorites (product_id, user_id)
                            WHERE product_id = $1
                            AND user_id = $2`;
@@ -100,10 +99,9 @@ module.exports = db => {
       const queryParams = [product.productId, userId];
 
       return db
-      .query(queryString, queryParams)
-      .then(result => console.log('product was added to favorites.'))
-      .catch(error => error.message);
-
+        .query(queryString, queryParams)
+        .then(result => console.log('product was added to favorites.'))
+        .catch(error => error.message);
     },
 
     // ADMIN: delete a product
@@ -114,14 +112,13 @@ module.exports = db => {
       const queryParams = [product.productId];
 
       return db
-      .query(queryString, queryParams)
-      .then(result => console.log('product was deleted.'))
-      .catch(error => error.message);
+        .query(queryString, queryParams)
+        .then(result => console.log('product was deleted.'))
+        .catch(error => error.message);
     },
 
     // ADMIN: mark a product as sold
     markAsSold(product) {
-
       const queryString = `UPDATE products
                            SET is_sold = TRUE
                            WHERE products.id = $1`;
@@ -129,15 +126,12 @@ module.exports = db => {
       const queryParams = [product.productId];
 
       return db
-      .query(queryString, queryParams)
-      .then(result => console.log('product was marked as sold.'))
-      .catch(error => error.message);
-
+        .query(queryString, queryParams)
+        .then(result => console.log('product was marked as sold.'))
+        .catch(error => error.message);
     }
 
-
-  }
-
+  };
 };
 
 // --------- NOTES -------- //

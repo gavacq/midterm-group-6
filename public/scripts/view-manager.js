@@ -4,8 +4,7 @@ $(() => {
 
   const $main = $('#main-content');
 
-  AppLib.viewManager = {test: "hello MyLib viewManager!"};
-  console.log('view-manager: ', AppLib.viewManager);
+  AppLib.viewManager = {};
 
   AppLib.viewManager.show = function(item) {
     AppLib.$productList.detach();

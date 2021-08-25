@@ -6,7 +6,7 @@ $(() => {
   `);
   AppLib.$productList = $productList;
 
-  AppLib.$productList = {};
+  AppLib.productList = {};
 
   function addProductCard(productCard) {
     $productList.append(productCard);
@@ -18,7 +18,7 @@ $(() => {
 
   AppLib.productList.clearProductCards = clearProductCards;
 
-  function createProductList(productsIds) {
+  function createProductList(products) {
     clearProductCards();
     for (const productId in products) {
       const product = products[productId];
@@ -27,5 +27,5 @@ $(() => {
     }
   }
 
-  window.productList.createProductList = createProductList;
+  AppLib.productList.createProductList = createProductList;
 });

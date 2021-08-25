@@ -57,7 +57,6 @@ const products  = require('./routes/products');
 // productsRouter is a router object for /products
 const productsRouter = products(productsQueries);
 
-
 const chatsQueries = require('./db/queries/chatsQueries')(db);
 // chats is a function imported from chats.js
 const chats  = require('./routes/chats');

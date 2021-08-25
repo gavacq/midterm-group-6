@@ -27,8 +27,12 @@ $(document).ready(function() {
     })
   });
   
+  // append icon to search form
+  $searchForm.append($favoriteIcon);
+
   // add the createSearchForm method to the searchForm object in the AppLib library
   AppLib.$searchForm = $searchForm;
+
 
   $searchForm.on('submit', function(event) {
     event.preventDefault();

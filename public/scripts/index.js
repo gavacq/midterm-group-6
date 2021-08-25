@@ -1,6 +1,6 @@
 $(() => {
   getProducts().then(function(json) {
-    productList.addProductCard(json.products);
-    views_manager.show('productList');
+    AppLib.productList.createProductList(json);
+    AppLib.viewManager.show('productList');
   });
 });

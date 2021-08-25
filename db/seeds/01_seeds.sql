@@ -16,23 +16,23 @@ VALUES (3, 'User3', 333333333, 'Canada', 'Quebec', 'Street 3', 'Montreal', '333 
 -- Seeds for products table
 
 INSERT INTO products (id, name, description, price, image_path)
-VALUES (01, 'plant', 'This is a plant', 25, '../../public/images/product_images/plant.jpg');
+VALUES (01, 'plant', 'This is a plant', 25, '/images/product_images/plant.jpg');
 
 
 INSERT INTO products (id, name, description, price, image_path)
-VALUES (02, 'car', 'This is a car', 5000, '../../public/images/product_images/car.jpg');
+VALUES (02, 'car', 'This is a car', 5000, '/images/product_images/car.jpg');
 
 
 INSERT INTO products (id, name, description, price, image_path)
-VALUES (03, 'coffee', 'This coffee pairs great with naan', 5, '../../public/images/product_images/coffee.jpg');
+VALUES (03, 'coffee', 'This coffee pairs great with naan', 5, '/images/product_images/coffee.jpg');
 
 
 INSERT INTO products (id, name, description, price, image_path)
-VALUES (04, 'handbag', 'Brand new. Original price: $150', 70, '../../public/images/product_images/handbag.jpg');
+VALUES (04, 'handbag', 'Brand new. Original price: $150', 70, '/images/product_images/handbag.jpg');
 
 
 INSERT INTO products (id, name, description, price, image_path)
-VALUES (05, 'laptop', 'Selling brand new laptop, 15 inch display.', 999, '../../public/images/product_images/laptop.jpg');
+VALUES (05, 'laptop', 'Selling brand new laptop, 15 inch display.', 999, '/images/product_images/laptop.jpg');
 
 
 

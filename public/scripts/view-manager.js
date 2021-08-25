@@ -4,17 +4,16 @@ $(() => {
 
   const $main = $('#main-content');
 
-  AppLib.viewManager = {test: "hello MyLib viewManager!"};
-  console.log('view-manager: ', AppLib.viewManager);
+  AppLib.viewManager = {};
 
   AppLib.viewManager.show = function(item) {
     AppLib.$productList.detach();
-    AppLib.$searchForm.detach();
-    AppLib.$chatList.detach();
+    // AppLib.$searchForm.detach();
+    // AppLib.$chatList.detach();
 
     switch (item) {
     case 'productList':
-      $productList.appendTo($main);
+      AppLib.$productList.appendTo($main);
       break;
     case 'chatList':
       $chatList.appendTo($main);

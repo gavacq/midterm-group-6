@@ -34,7 +34,7 @@ module.exports = productsQueries => {
           name: req.body.name,
           description: req.body.description,
           price: req.body.price,
-          imagePath: req.body.imagePath
+          imagePath: req.body.image_path
         };
 
         // admin adds a product for sale

@@ -10,14 +10,14 @@ $(() => {
     AppLib.$productList.detach();
     AppLib.$searchForm.detach();
     AppLib.$newProductForm.detach();
-    // AppLib.$chatList.detach();
+    AppLib.$chatList.detach();
 
     switch (item) {
     case 'productList':
       AppLib.$productList.appendTo($main);
       break;
     case 'chatList':
-      $chatList.appendTo($main);
+      AppLib.$chatList.appendTo($main);
       break;
     case 'searchForm':
       AppLib.$searchForm.appendTo($main);

@@ -13,9 +13,8 @@ $(() => {
   }
 
   function createChatList(chats) {
-    for (const chatId in chats) {
-      console.log('chat in chats: ', chats)
-      const chat = chats[chatId];
+    for (const chat of chats) {
+      // TODO: for user, group chat cards by productId. For admin, group by user, and then productiD
       const chatCard = AppLib.chatCard.createChatCard(chat);
       addChatCard(chatCard);
     }

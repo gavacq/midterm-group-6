@@ -12,7 +12,7 @@ module.exports = (chatsQueries) => {
     .get((req, res) => {
       // res.send("GET /chats was successful");
       chatsQueries
-        .getChats()
+        .getChats(Number(req.session.userId))
         .then((data) => {
           res.json(data);
         })

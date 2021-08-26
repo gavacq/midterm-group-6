@@ -1,9 +1,16 @@
+const {adminId} = require("../../constants");
+
 module.exports = (db) => {
   return {
-    getChats() {
-      const queryString = `SELECT * FROM messages
-      JOIN chats ON chats.id=chat_id
-      ORDER BY datetime DESC`;
+    getChats(userId) {
+      let queryString = `SELECT * FROM messages
+      JOIN chats ON chats.id=chat_id`;
+
+      if (userId !== adminId) {
+        queryString += ` WHERE user_id = ${userId}`;
+      }
+
+      queryString += ` ORDER BY datetime DESC`;
 
       return db
         .query(queryString)
@@ -26,7 +33,7 @@ module.exports = (db) => {
       VALUES ($1, $2, $3, $4) RETURNING *`;
           //replace 'aaa' with content once frontend is ready
           const queryParams = [id, 'FALSE', time, 'aaa'];
-          
+
           return db.query(queryString, queryParams)
             .then((result) => result.rows)
             .catch((error) => error.message);

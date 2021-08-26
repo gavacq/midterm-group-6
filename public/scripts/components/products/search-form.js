@@ -2,7 +2,7 @@ $(document).ready(function() {
   const $searchForm = $(
 
     `
-      <form action = '/products' method = 'post' id = 'search-product-form'>
+      <form id = 'new-product-form'>
         <h3> Filter by price </h3>
         <div class = 'input-fields'>  
           <label for="min-price-filter">Minimum price</label>

@@ -67,7 +67,7 @@ module.exports = db => {
     postNewProduct(product) {
       const queryString = `INSERT INTO products (name, description, price, image_path)
       VALUES ($1, $2, $3, $4)
-      RETURNING *`; // NOTE: not sure if RETURNING * is needed
+      `; // NOTE: not sure if RETURNING * is needed
 
       const queryParams = [product.name, product.description, product.price, product.imagePath];
 

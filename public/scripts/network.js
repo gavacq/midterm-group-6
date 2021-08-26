@@ -35,6 +35,8 @@ const removeFromFavorites = function(productId) {
 };
 
 const postNewProduct = function(data) {
+  console.log('inside postNewProduct script');
+  
   return $.ajax({
     method: "POST",
     url: "/products",

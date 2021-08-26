@@ -9,6 +9,7 @@ $(() => {
   AppLib.viewManager.show = function(item) {
     AppLib.$productList.detach();
     AppLib.$searchForm.detach();
+    AppLib.$newProductForm.detach();
     // AppLib.$chatList.detach();
 
     switch (item) {
@@ -20,6 +21,9 @@ $(() => {
       break;
     case 'searchForm':
       AppLib.$searchForm.appendTo($main);
+      break;
+    case 'newProductForm':
+      AppLib.$newProductForm.appendTo($main);
       break;
     case 'error': {
       const $error = $(`<p>${arguments[1]}</p>`);

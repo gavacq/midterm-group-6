@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const adminId = require("../constants");
+const {adminId} = require("../constants");
 
 // ---------------- Requests for root: /chats -------------------- //
 
@@ -23,10 +23,10 @@ module.exports = (chatsQueries) => {
     //post request to /chats, user creates chat
     .post((req, res) => {
       // check that user is NOT admin
-      if (req.session.userId !== adminId) {
+      if (Number(req.session.userId) !== adminId) {
         const product = {productId: req.body.productId, };
         chatsQueries
-          .createChat(product, req.session.userId, req.body.content)
+          .createChat(product, Number(req.session.userId), req.body.content)
           .then((data) => {
             res.json(data);
             // res.send("POST to /chats was successful. User adds a chat. \n");
@@ -53,7 +53,7 @@ module.exports = (chatsQueries) => {
       
       const chat = {
         chatId: req.params.chatId,
-        from_admin: Boolean(req.session.userId === adminId),
+        from_admin: Boolean(Number(req.session.userId) === adminId),
         content: req.body.content
       };
 

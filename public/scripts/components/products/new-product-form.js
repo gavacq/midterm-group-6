@@ -26,7 +26,10 @@ $(document).ready(function() {
 
     // send a request to /products with a URL encoded query string
     postNewProduct(data).then(function(json) {
-      AppLib.viewManager.show('productList');
+      getProducts().then(function(json) {
+        AppLib.productList.createProductList(json);
+        AppLib.viewManager.show('productList');
+      });
     });
   });
 });

@@ -43,7 +43,7 @@ module.exports = db => {
       // FILTER BY PRICE: maximum price
       if (options.maximumPrice) {
         queryParams.push(`${options.maximumPrice}`);
-        filters.push(`price >= $${queryParams.length}`);
+        filters.push(`price <= $${queryParams.length}`);
       }
 
       // concatenate filters

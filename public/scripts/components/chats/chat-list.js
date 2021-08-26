@@ -14,6 +14,7 @@ $(() => {
 
   function createChatList(chats) {
     for (const chatId in chats) {
+      console.log('chat in chats: ', chats)
       const chat = chats[chatId];
       const chatCard = AppLib.chatCard.createChatCard(chat);
       addChatCard(chatCard);

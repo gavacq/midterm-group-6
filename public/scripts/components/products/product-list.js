@@ -28,4 +28,5 @@ $(() => {
   }
 
   AppLib.productList.createProductList = createProductList;
+  console.log(addProductCard(createProductList))
 });

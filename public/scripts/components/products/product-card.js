@@ -20,7 +20,7 @@ $(document).ready(function() {
           <li>Description: ${product.description}</li>
         </ul>
         ${product.favorite ?
-      `This product is in your favorites` : ``}
+    `This product is in your favorites` : ``}
       </section> 
     </article>
     `;

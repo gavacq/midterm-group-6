@@ -66,7 +66,8 @@ module.exports = db => {
     // ADMIN: insert new product in /products
     postNewProduct(product) {
       const queryString = `INSERT INTO products (name, description, price, image_path)
-      VALUES ($1, $2, $3, $4)`;
+      VALUES ($1, $2, $3, $4)
+      RETURNING *`;
 
       const queryParams = [product.name, product.description, product.price, product.imagePath];
 
@@ -75,7 +76,7 @@ module.exports = db => {
 
       return db
         .query(queryString, queryParams)
-        .then(result => result.rows)
+        .then(result => result.rows[0].id)
         .catch(error => error.message);
     },
 
@@ -88,7 +89,7 @@ module.exports = db => {
 
       return db
         .query(queryString, queryParams)
-        .then(result => console.log('product is being viewed.'))
+        .then(result => result)
         .catch(error => error.message);
     },
 

@@ -1,0 +1,27 @@
+.product-card {
+  background: #eef5db;
+  border-radius: 20px;
+
+  font-family: "Open Sans", sans-serif;
+  color: #f0b67f;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  align-items: center;
+  margin: 2em;
+
+  .product-card-preview-image {
+    img {
+      padding: 2em;
+      border-radius: 50px;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  .product-card-name {
+    font-size: xx-large;
+  }
+  .product-details {
+    padding-left: 0;
+  }
+}

@@ -14,6 +14,8 @@ VALUES (3, 'User3', 333333333, 'Canada', 'Quebec', 'Street 3', 'Montreal', '333 
 INSERT INTO users (id, name, phone, country, province, city, street, postal_code)
 VALUES (4, 'Gavin', 444444444, 'Canada', 'British Columbia', 'Vancouver', 'Street 4', '444 444');
 
+ALTER SEQUENCE users_id_seq RESTART WITH 5;
+
 
 
 -- Seeds for products table
@@ -60,41 +62,45 @@ VALUES (13, 'Chai', 'const assert = require("chai").assert', 12, '/images/produc
 INSERT INTO products (id, name, description, price, image_path)
 VALUES (14, 'sneakers', 'new kicks', 12, '/images/product_images/sneakers.jpg');
 
+ALTER SEQUENCE products_id_seq RESTART WITH 15;
+
 -- Seeds for favorites table
 
 INSERT INTO favorites (id, product_id, user_id)
-VALUES (382, 03, 1);
+VALUES (1, 03, 1);
 
 INSERT INTO favorites (id, product_id, user_id)
-VALUES (041, 02, 1);
+VALUES (2, 02, 1);
 
 INSERT INTO favorites (id, product_id, user_id)
-VALUES (901, 05, 3);
+VALUES (3, 05, 3);
 
 INSERT INTO favorites (id, product_id, user_id)
-VALUES (119, 13, 4);
+VALUES (4, 13, 4);
 
 INSERT INTO favorites (id, product_id, user_id)
-VALUES (079, 12, 4);
+VALUES (5, 12, 4);
 
 INSERT INTO favorites (id, product_id, user_id)
-VALUES (613, 03, 4);
+VALUES (6, 03, 4);
 
-
+ALTER SEQUENCE favorites_id_seq RESTART WITH 7;
 
 -- Seeds for chats table
 
 INSERT INTO chats (id, product_id, user_id)
-VALUES (05, 05, 2);
+VALUES (5, 05, 2);
 
 INSERT INTO chats (id, product_id, user_id)
-VALUES (10, 02, 1);
+VALUES (6, 02, 1);
 
 INSERT INTO chats (id, product_id, user_id)
-VALUES (07, 02, 3);
+VALUES (7, 02, 3);
 
 INSERT INTO chats (id, product_id, user_id)
 VALUES (56, 03, 4);
+
+ALTER SEQUENCE chats_id_seq RESTART WITH 57;
 
 
 -- Seeds for messages table
@@ -113,3 +119,5 @@ VALUES (44, 56, FALSE, '2021-08-24 05:39:04', 'hello, I need coffee to fuel my c
 
 INSERT INTO messages (id, chat_id, from_admin, datetime, content)
 VALUES (45, 56, TRUE, '2021-08-24 06:00:00', 'lol');
+
+ALTER SEQUENCE messages_id_seq RESTART WITH 46;

@@ -13,6 +13,8 @@ $(document).ready(function() {
       <section class = 'product-card-preview-image'>
         <img src = '${product.image_path}' width=500 alt = 'product-preview'>    
       </section>
+<<<<<<< product-cards
+=======
       <section class = 'product-details'>
         <h3 class = 'product-card-name'>${product.name}</h3>
         <ul class = 'product-details'> 
@@ -22,6 +24,7 @@ $(document).ready(function() {
         ${product.favorite ?
     `This product is in your favorites` : ``}
       </section> 
+>>>>>>> master
     </article>
     `;
   };

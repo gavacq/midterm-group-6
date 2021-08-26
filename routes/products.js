@@ -43,7 +43,7 @@ module.exports = productsQueries => {
         // admin adds a product for sale
         productsQueries.postNewProduct(product)
           .then(data => {
-            res.json(data);
+            return res.json(data);
           })
           .catch(err => console.log(err));
       }

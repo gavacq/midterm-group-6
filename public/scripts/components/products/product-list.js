@@ -20,8 +20,7 @@ $(() => {
 
   function createProductList(products) {
     clearProductCards();
-    for (const productId in products) {
-      const product = products[productId];
+    for (const product of products) {
       const productCard = AppLib.productCard.createProductCard(product);
       addProductCard(productCard);
     }

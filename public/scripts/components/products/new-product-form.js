@@ -24,7 +24,6 @@ $(document).ready(function() {
     event.preventDefault();
     const data = $(this).serialize();
 
-    // send a request to /products with a URL encoded query string
     postNewProduct(data).then(function(json) {
       getProducts().then(function(json) {
         AppLib.productList.createProductList(json);

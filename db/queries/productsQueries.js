@@ -12,7 +12,7 @@ module.exports = db => {
     // USER/ADMIN: view all products, or filter by price/favorites
     getProducts(options) {
       console.log('inside getProducts');
-      
+
       // array to hold parameters that may be entered in the query
       const queryParams = [];
 
@@ -43,20 +43,20 @@ module.exports = db => {
       // FILTER BY PRICE: maximum price
       if (options.maximumPrice) {
         queryParams.push(`${options.maximumPrice}`);
-        filters.push(`price >= $${queryParams.length}`);
+        filters.push(`price <= $${queryParams.length}`);
       }
 
       // concatenate filters
       if (filters.length > 0) {
         queryString += ' WHERE ' + filters.join(' AND ');
       }
-      
+
       // complete queryString
       queryString += ` ORDER BY price;`;
       // queryString += ";";
 
       console.log('queryString: ', queryString);
-      
+
       return db
         .query(queryString, queryParams)
         .then(result => result.rows)
@@ -66,10 +66,12 @@ module.exports = db => {
     // ADMIN: insert new product in /products
     postNewProduct(product) {
       const queryString = `INSERT INTO products (name, description, price, image_path)
-      VALUES ($1, $2, $3, $4)
-      RETURNING *`; // NOTE: not sure if RETURNING * is needed
+      VALUES ($1, $2, $3, $4)`;
 
       const queryParams = [product.name, product.description, product.price, product.imagePath];
+
+      console.log('queryString: ', queryString);
+      console.log('queryParams: ', queryParams);
 
       return db
         .query(queryString, queryParams)

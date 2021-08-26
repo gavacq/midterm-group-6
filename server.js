@@ -41,9 +41,8 @@ app.use(express.static("public"));
 // All cookies (id, email, password) are stored in 'session'
 app.use(cookieSession({
   name: 'session',
-  keys: ['ksdjygfti7436r5ov8q47tv','ksufby3iyfvbpq398y']
+  keys: ['ksdjygfti7436r5ov8q47tv', 'ksufby3iyfvbpq398y']
 }));
-
 
 // ------------------------- SET UP ROUTING & HELPERS ---------------------------------- //
 
@@ -62,16 +61,13 @@ const chatsQueries = require('./db/queries/chatsQueries')(db);
 const chats  = require('./routes/chats');
 const chatsRouter = chats(chatsQueries);
 
-
 // use chats.js file to handle endpoints starting with /chats
 // use products.js file to handle endpoints starting with /products
 app.use('/products', productsRouter);
 app.use('/chats', chatsRouter);
 
-
 // GET LOGIN PATH
 app.get('/login/:userId', (req, res) => {
-
   // create session cookies
   req.session.userId = req.params.userId;
 
@@ -82,11 +78,9 @@ app.get('/login/:userId', (req, res) => {
 // GET HOME PAGE (root path)
 
 app.get('/', (req, res) => {
-
   // render EJS template for home page
   res.render('index');
 });
-
 
 // GET error 404 page
 // Shown when the user requests a URL that does not exist

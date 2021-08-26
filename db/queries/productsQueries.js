@@ -96,14 +96,25 @@ module.exports = db => {
     // USER: add a product to favorites
     addToFavorites(product, userId) {
       const queryString = `INSERT INTO favorites (product_id, user_id)
-                           WHERE product_id = $1
-                           AND user_id = $2`;
+      VALUES ($1, $2);`
 
       const queryParams = [product.productId, userId];
 
       return db
         .query(queryString, queryParams)
         .then(result => console.log('product was added to favorites.'))
+        .catch(error => error.message);
+    },
+
+    deleteFavourites(product, userId) {
+      const queryString = `DELETE FROM favorites
+      WHERE product_id = $1 AND user_id = $2`;
+
+      const queryParams = [product.productId, userId];
+
+      return db
+        .query(queryString, queryParams)
+        .then(result => console.log('product was deleted from favorites.'))
         .catch(error => error.message);
     },
 

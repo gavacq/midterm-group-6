@@ -57,7 +57,6 @@ module.exports = productsQueries => {
     .route('/:productId')
     .get((req, res) => {
       const product = {productId: req.params.productId};
-
       // user or admin views a product modal
       productsQueries.viewProduct(product)
         .then(data => {
@@ -75,6 +74,25 @@ module.exports = productsQueries => {
 
         // user adds a product to favorites
         productsQueries.addToFavorites(product, Number(req.session.userId))
+          .then(data => {
+            res.json(data);
+          })
+          .catch(err => console.log(err));
+      }
+    });
+
+  router
+    .route('/:productId/fav')
+    .post((req, res) => {
+      // check that user is NOT admin
+     
+      if (req.session.userId !== adminId) {
+        const product = {
+          productId: req.params.productId,
+        };
+        console.log(product);
+        // user adds a product to favorites
+        productsQueries.deleteFavourites(product, req.session.userId)
           .then(data => {
             res.json(data);
           })

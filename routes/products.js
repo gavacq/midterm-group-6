@@ -32,7 +32,6 @@ module.exports = productsQueries => {
       // check that user is admin
       if (Number(req.session.userId) === adminId) {
         const product = {
-          productId: req.params.productId,
           name: req.body.name,
           description: req.body.description,
           price: req.body.price,

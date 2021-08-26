@@ -71,6 +71,9 @@ module.exports = db => {
 
       const queryParams = [product.name, product.description, product.price, product.imagePath];
 
+      console.log('queryString: ', queryString);
+      console.log('queryParams: ', queryParams);
+
       return db
         .query(queryString, queryParams)
         .then(result => result.rows)

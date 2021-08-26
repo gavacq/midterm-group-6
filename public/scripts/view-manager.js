@@ -14,7 +14,10 @@ $(() => {
 
     switch (item) {
     case 'productList':
-      AppLib.$productList.appendTo($main);
+      getProducts().then(function(json) {
+        AppLib.productList.createProductList(json);
+        AppLib.$productList.appendTo($main);
+      });
       break;
     case 'chatList':
       $chatList.appendTo($main);

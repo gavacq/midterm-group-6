@@ -10,6 +10,8 @@ $(document).ready(function() {
           <input type = 'text' name = "description" placeholder="Product description" id="Product-description-field">
           <label for="price">Product price</label>
           <input type = 'number' name = "price" placeholder="Product price" id="Product-price-field">
+          <label for="path">Image path</label>
+          <input type = 'text' name = "image_path" placeholder="Product image path" id="Product-image-path">
         </div>
         <button type = 'submit'>Post</button>
       </form>

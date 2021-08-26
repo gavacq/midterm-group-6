@@ -35,6 +35,8 @@ const removeFromFavorites = function(productId) {
 };
 
 const postNewProduct = function(data) {
+  console.log('inside postNewProduct script');
+  
   return $.ajax({
     method: "POST",
     url: "/products",
@@ -50,14 +52,6 @@ const markAsSold = function(productId) {
   return $.ajax({
     method: "POST",
     url: `/products/${productId}/sold`,
-  });
-};
-
-const addProduct = function(data) {
-  return $.ajax({
-    method: "POST",
-    url: "/products",
-    data,
   });
 };
 

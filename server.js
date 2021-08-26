@@ -13,7 +13,6 @@ const sass       = require("node-sass-middleware");
 const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
 
-
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -42,13 +41,14 @@ app.use(express.static("public"));
 // All cookies (id, email, password) are stored in 'session'
 app.use(cookieSession({
   name: 'session',
-  keys: ['ksdjygfti7436r5ov8q47tv','ksufby3iyfvbpq398y']
+  keys: ['ksdjygfti7436r5ov8q47tv', 'ksufby3iyfvbpq398y']
 }));
-
 
 // ------------------------- SET UP ROUTING & HELPERS ---------------------------------- //
 
 // import object containing all queries relating to /products
+// const productsQueriesFunction = require("...")
+// const productsQueries = productsQueriesFunction(db)
 const productsQueries = require('./db/queries/productsQueries')(db);
 
 // products is a function imported from products.js
@@ -56,18 +56,18 @@ const products  = require('./routes/products');
 // productsRouter is a router object for /products
 const productsRouter = products(productsQueries);
 
+const chatsQueries = require('./db/queries/chatsQueries')(db);
+// chats is a function imported from chats.js
 const chats  = require('./routes/chats');
-
+const chatsRouter = chats(chatsQueries);
 
 // use chats.js file to handle endpoints starting with /chats
 // use products.js file to handle endpoints starting with /products
 app.use('/products', productsRouter);
-app.use('/chats', chats);
-
+app.use('/chats', chatsRouter);
 
 // GET LOGIN PATH
 app.get('/login/:userId', (req, res) => {
-
   // create session cookies
   req.session.userId = req.params.userId;
 
@@ -78,11 +78,9 @@ app.get('/login/:userId', (req, res) => {
 // GET HOME PAGE (root path)
 
 app.get('/', (req, res) => {
-
   // render EJS template for home page
   res.render('index');
 });
-
 
 // GET error 404 page
 // Shown when the user requests a URL that does not exist

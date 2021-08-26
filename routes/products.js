@@ -5,7 +5,7 @@
 const express = require('express');
 const router = express.Router();
 
-const adminId = require('../constants');
+const {adminId} = require('../constants');
 
 // ---------------- Requests for root: /products -------------------- //
 
@@ -14,8 +14,10 @@ module.exports = productsQueries => {
     .route('/')
     .get((req, res) => {
       const options = {
-        minimumPrice: req.query.minimumPrice,
-        maximumPrice: req.query.maximumPrice
+        minimumPrice: req.query["minimum-price"],
+        maximumPrice: req.query["maximum-price"],
+        favorite: req.query.favorite,
+        userId: Number(req.session.userId)
       };
 
       // user or admin views all products in home page
@@ -28,14 +30,15 @@ module.exports = productsQueries => {
     })
     .post((req, res) => {
       // check that user is admin
-      if (req.session.userId === adminId) {
+      if (Number(req.session.userId) === adminId) {
         const product = {
-          productId: req.params.productId,
           name: req.body.name,
           description: req.body.description,
           price: req.body.price,
-          imagePath: req.body.imagePath
+          imagePath: req.body.image_path
         };
+
+        console.log('new product: ', product);
 
         // admin adds a product for sale
         productsQueries.postNewProduct(product)
@@ -64,14 +67,14 @@ module.exports = productsQueries => {
     })
     .post((req, res) => {
       // check that user is NOT admin
-      if (req.session.userId !== adminId) {
+      if (Number(req.session.userId) !== adminId) {
         const product = {
           productId: req.params.productId,
           favorite: req.body.favorite
         };
 
         // user adds a product to favorites
-        productsQueries.addToFavorites(product, req.session.userId)
+        productsQueries.addToFavorites(product, Number(req.session.userId))
           .then(data => {
             res.json(data);
           })
@@ -83,7 +86,7 @@ module.exports = productsQueries => {
     .route('/:product_id/delete')
     .post((req, res) => {
       // check that user is admin
-      if (req.session.userId === adminId) {
+      if (Number(req.session.userId) === adminId) {
         const product = {productId: req.params.productId};
 
         // admin deletes a product
@@ -99,7 +102,7 @@ module.exports = productsQueries => {
     .route('/:product_id/sold')
     .post((req, res) => {
       // check that user is admin
-      if (req.session.userId === adminId) {
+      if (Number(req.session.userId) === adminId) {
         const product = {productId: req.params.productId};
 
         // admin marks a product as sold

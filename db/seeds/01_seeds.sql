@@ -49,6 +49,9 @@ INSERT INTO products (id, name, description, price, image_path)
 VALUES (10, 'Lighthouse', 'WiFi not included.', 13000, '/images/product_images/lighthouse.jpg');
 
 INSERT INTO products (id, name, description, price, image_path)
+VALUES (11, 'polaroid camera', 'Only used a few times. Film no included.', 80, '/images/product_images/polaroid.jpg');
+
+INSERT INTO products (id, name, description, price, image_path)
 VALUES (12, 'Naan', 'Great mid-lecture snack', 10, '/images/product_images/naan.jpg');
 
 INSERT INTO products (id, name, description, price, image_path)
@@ -56,12 +59,6 @@ VALUES (13, 'Chai', 'const assert = require("chai").assert', 12, '/images/produc
 
 INSERT INTO products (id, name, description, price, image_path)
 VALUES (14, 'sneakers', 'new kicks', 12, '/images/product_images/sneakers.jpg');
-
-INSERT INTO products (id, name, description, price, image_path)
-VALUES (15, 'polaroid camera', 'Only used a few times. Film no included.', 80, '/images/product_images/polaroid.jpg');
-
-
-
 
 -- Seeds for favorites table
 

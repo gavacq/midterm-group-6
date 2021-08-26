@@ -4,9 +4,9 @@ $(() => {
     AppLib.viewManager.show('productList');
   });
   $('.fas.fa-comment-dots').on('click', ()=>{
-    console.log('hello');
+    // console.log('hello');
     getChats().then((json)=>{
-      console.log(json);
+      // console.log(json);
       AppLib.chatList.createChatList(json);
       AppLib.viewManager.show('chatList');
     });

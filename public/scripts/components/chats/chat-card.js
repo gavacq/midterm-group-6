@@ -3,10 +3,11 @@ $(document).ready(function() {
   AppLib.chatCard = {};
 
   // FUNCTION: generates the HTML for the modal view of a product.
-  const createChatCard = chat => {
+  const createChatCard = message => {
     return `
     <article class = 'chat-card'>
-    <p>content: ${chat.content}</p>
+    <p>content: ${message.content}</p>
+    <p>hello<p>
     </article>
     `;
   };

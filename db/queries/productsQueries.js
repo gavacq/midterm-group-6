@@ -104,6 +104,19 @@ module.exports = db => {
         .catch(error => error.message);
     },
 
+    deleteFavourites(product, userId){
+      const queryString = `DELETE FROM favorites (product_id, user_id)
+      WHERE product_id = $1
+      AND user_id = $2`;
+
+      const queryParams = [product.productId, userId];
+
+      return db
+      .query(queryString, queryParams)
+      .then(result => console.log('product was deleted from favorites.'))
+      .catch(error => error.message);
+    }
+
     // ADMIN: delete a product
     deleteProduct(product) {
       const queryString = `DELETE FROM products

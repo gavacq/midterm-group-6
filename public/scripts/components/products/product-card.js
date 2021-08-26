@@ -15,15 +15,6 @@ $(document).ready(function() {
       <section class = 'product-card-preview-image'>
         <img src = '${product.imagePath}'} alt = 'product-preview'>    
       </section>
-      <section class = 'product-details'>
-        <h3 class = 'product-card-name'>${product.name}</h3>
-        <ul class = 'product-details'> 
-          <li>Price: ${product.price}</li>
-          <li>Description: ${product.description}</li>
-        </ul>
-        ${product.favorite ?
-      `This product is in your favorites` : ``}
-      </section> 
     </article>
     `;
   };

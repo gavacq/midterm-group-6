@@ -56,7 +56,6 @@ module.exports = productsQueries => {
     .route('/:productId')
     .get((req, res) => {
       const product = {productId: req.params.productId};
-      console.log(req.params);
       // user or admin views a product modal
       productsQueries.viewProduct(product)
         .then(data => {

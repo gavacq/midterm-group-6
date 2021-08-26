@@ -15,8 +15,7 @@ $(document).ready(function() {
       </section>
     </article>
     `).on('click', (function(event) {
-      console.log('productCard clicked');
-    
+      // launch modal
       event.preventDefault();
       this.blur(); // Manually remove focus from clicked link.
       viewProduct(this.id).then(function(data) {

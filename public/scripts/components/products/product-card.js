@@ -16,11 +16,11 @@ $(document).ready(function() {
       <section class = 'product-details'>
         <h3 class = 'product-card-name'>${product.name}</h3>
         <ul class = 'product-details'> 
-          <li>Price: ${product.price}</li>
-          <li>Description: ${product.description}</li>
+          <p>Price: ${product.price}</p>
+          <p>Description: ${product.description}</p>
         </ul>
         ${product.favorite ?
-      `This product is in your favorites` : ``}
+    `This product is in your favorites` : ``}
       </section> 
     </article>
     `;

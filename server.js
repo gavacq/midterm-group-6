@@ -62,7 +62,6 @@ const chatsQueries = require('./db/queries/chatsQueries')(db);
 const chats  = require('./routes/chats');
 const chatsRouter = chats(chatsQueries);
 
-
 // use chats.js file to handle endpoints starting with /chats
 // use products.js file to handle endpoints starting with /products
 app.use('/products', productsRouter);

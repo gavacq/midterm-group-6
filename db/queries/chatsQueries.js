@@ -4,16 +4,19 @@ module.exports = (db) => {
   return {
     getChats(userId) {
       let queryString = `SELECT * FROM messages
-      JOIN chats ON chats.id=chat_id`;
+      JOIN chats ON chats.id=chat_id
+      JOIN products ON products.id = chats.product_id`;
+      const queryParams = [];
 
       if (userId !== adminId) {
-        queryString += ` WHERE user_id = ${userId}`;
+        queryString += ` WHERE user_id = $1`;
+        queryParams.push(userId);
       }
 
       queryString += ` ORDER BY datetime DESC`;
 
       return db
-        .query(queryString)
+        .query(queryString, queryParams)
         .then((result) => result.rows)
         .catch((error) => error.message);
     },
@@ -41,14 +44,18 @@ module.exports = (db) => {
     },
 
     viewChat(chat) {
-      const queryString = `SELECT * FROM chats
-                           WHERE chats.id = $1`;
+      const queryString =
+        `SELECT * FROM messages
+         JOIN chats ON chats.id = messages.chat_id
+         WHERE chats.id = $1`;
 
-      const queryParams = [chat.chatID];
+      const queryParams = [chat.chatId];
 
       return db
         .query(queryString, queryParams)
-        .then((result) => console.log("chat is being viewed."))
+        .then((result) => {
+          return result.rows;
+        })
         .catch((error) => error.message);
     },
 

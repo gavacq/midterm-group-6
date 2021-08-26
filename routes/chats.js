@@ -41,6 +41,8 @@ module.exports = (chatsQueries) => {
     .get((req, res) => {
       const chat = { chatId: req.params.chatId };
 
+      console.log('chat', chat);
+
       chatsQueries
         .viewChat(chat)
         .then((data) => {

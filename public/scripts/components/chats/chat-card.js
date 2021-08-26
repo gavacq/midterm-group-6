@@ -4,11 +4,23 @@ $(document).ready(function() {
 
   // FUNCTION: generates the HTML for the modal view of a product.
   const createChatCard = chat => {
-    return `
-    <article class = 'chat-card'>
-    <p>content: ${chat.content}</p>
-    </article>
-    `;
+    const $chatCard =
+    $(`<article class = 'chat-card' id = ${chat.chat_id}>
+      <section class = 'chat-card-preview-image'>
+        <img src = '${chat.image_path}' width=200 alt = 'product-preview'>    
+      </section>
+    </article>`
+    ).on('click', (function(event) {
+      // launch modal
+      event.preventDefault();
+      this.blur(); // Manually remove focus from clicked link.
+      viewChat(this.id).then(function(data) {
+        $(`<div><p>${JSON.stringify(data)}</p></div>`).appendTo('#main-content').modal();
+      // createChatModal(data).appendTo('#main-content').modal();
+      });
+    }));
+
+    return $chatCard;
   };
 
   // add the createChatCard method to the chatCard object in the AppLib library

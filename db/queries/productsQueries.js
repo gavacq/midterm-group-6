@@ -49,7 +49,7 @@ module.exports = db => {
 
       // concatenate filters
       if (filters.length > 0) {
-        queryString += ' WHERE ' + filters.join(' AND ');
+        queryString += ' AND ' + filters.join(' AND ');
       }
 
       // complete queryString

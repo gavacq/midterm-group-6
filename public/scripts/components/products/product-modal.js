@@ -21,7 +21,9 @@ $(document).ready(function() {
         <button id="sell-button" type="submit">Sell product</button
       `);
     } else {
-      $productModal.append(`<form><input type='text' name='content' placeholder='Message the seller'><button type='submit'>Send</button></form>`);
+      $productModal.append(`
+      <i class="fas fa-heart button"></i>
+      <form><input type='text' name='content' placeholder='Message the seller'><button type='submit'>Send</button></form>`);
     }
     
     $productModal.on('click', '#delete-button', function() {

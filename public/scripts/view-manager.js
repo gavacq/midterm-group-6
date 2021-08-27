@@ -6,18 +6,25 @@ $(() => {
 
   AppLib.viewManager = {};
 
+  AppLib.showChatsView = () => {
+    getChats().then((json)=>{
+      AppLib.chatList.createChatList(json);
+      AppLib.viewManager.show('chatList');
+    });
+  };
+
   AppLib.viewManager.show = function(item) {
     AppLib.$productList.detach();
     AppLib.$searchForm.detach();
     AppLib.$newProductForm.detach();
-    // AppLib.$chatList.detach();
+    AppLib.$chatList.detach();
 
     switch (item) {
     case 'productList':
       AppLib.$productList.appendTo($main);
       break;
     case 'chatList':
-      $chatList.appendTo($main);
+      AppLib.$chatList.appendTo($main);
       break;
     case 'searchForm':
       AppLib.$searchForm.appendTo($main);
@@ -30,7 +37,7 @@ $(() => {
       $error.appendTo('body');
       setTimeout(() => {
         $error.remove();
-        viewManager.show('productList');
+        view.Manager.show('productList');
       }, 2000);
           
       break;

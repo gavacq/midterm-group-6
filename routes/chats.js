@@ -12,7 +12,7 @@ module.exports = (chatsQueries) => {
     .get((req, res) => {
       // res.send("GET /chats was successful");
       chatsQueries
-        .getChats()
+        .getChats(Number(req.session.userId))
         .then((data) => {
           res.json(data);
         })
@@ -41,6 +41,8 @@ module.exports = (chatsQueries) => {
     .get((req, res) => {
       const chat = { chatId: req.params.chatId };
 
+      console.log('chat', chat);
+
       chatsQueries
         .viewChat(chat)
         .then((data) => {
@@ -54,12 +56,12 @@ module.exports = (chatsQueries) => {
       const chat = {
         chatId: req.params.chatId,
         from_admin: Boolean(Number(req.session.userId) === adminId),
-        content: req.body.content
+        content: req.body
       };
 
       chatsQueries.sendMessage(chat)
         .then(data => {
-          console.log('data', data);
+          console.log('data returned', data);
           res.json(data);
         })
         .catch(err => console.log(err));

@@ -24,11 +24,10 @@ $(document).ready(function() {
     event.preventDefault();
     const data = $(this).serialize();
 
+    $('input').val('');
+
     postNewProduct(data).then(function(json) {
-      getProducts().then(function(json) {
-        AppLib.productList.createProductList(json);
-        AppLib.viewManager.show('productList');
-      });
+      AppLib.showProductsView();
     });
   });
 });

@@ -16,10 +16,15 @@ $(document).ready(function() {
       </div> `
     ).on('click', '#delete-button', function() {
       // retrieve the id from the html
-    const productId = (this.id).replace(/-modal/, '');
-    console.log('productId: ', productId);
+    const productId = (product.id);
+   
     deleteProduct(productId);
-    AppLib.viewManager.show('productList');
+    
+    getProducts()
+        .then(function(json) {
+          AppLib.productList.createProductList(json);
+          AppLib.viewManager.show('productList');
+        });
   });
 
     return $productModal;

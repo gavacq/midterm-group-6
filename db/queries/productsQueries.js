@@ -89,7 +89,7 @@ module.exports = db => {
 
       return db
         .query(queryString, queryParams)
-        .then(result => result)
+        .then(result => result.rows)
         .catch(error => error.message);
     },
 

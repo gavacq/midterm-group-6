@@ -17,9 +17,9 @@ $(document).ready(function() {
       this.blur(); // Manually remove focus from clicked link.
       viewProduct(this.id).then(function(data) {
         
-        console.log('AppLib: ', AppLib);
+        console.log('data: ', data);
         
-        AppLib.productModal.createProductModal(data).appendTo('#main-content').modal();
+        AppLib.productModal.createProductModal(data[0]).appendTo('#main-content').modal();
       });
     }));
 

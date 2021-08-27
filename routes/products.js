@@ -87,11 +87,12 @@ module.exports = productsQueries => {
     .post((req, res) => {
       // check that user is admin
       if (Number(req.session.userId) === adminId) {
-        const product = {productId: req.params.productId};
-
+        const product = {productId: req.params.product_id};
+       
         // admin deletes a product
         productsQueries.deleteProduct(product)
           .then(data => {
+            console.log('deleted a product.');
             res.json(data);
           })
           .catch(err => console.log(err));

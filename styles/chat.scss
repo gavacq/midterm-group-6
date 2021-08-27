@@ -3,5 +3,17 @@ div .chat-modal {
 }
 
 form .message-form{
-  border: #67508d;
+  border: solid #67508d 3px;
+}
+
+.chatList{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatList img{
+  border: solid #67508d 3px;
 }

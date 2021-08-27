@@ -6,9 +6,9 @@ $(document).ready(function() {
   const createChatCard = chat => {
     const $chatCard =
     $(`<article class = 'chat-card' id = ${chat.chatId}>
-      <section class = 'chat-card-preview-image'>
-        <img src = '${chat.imagePath}' width=200 alt = 'product-preview'>   
-      </section>
+
+        <img src = '${chat.imagePath}' width=200 alt = 'product-preview'>    
+    
     </article>`
     ).on('click', (function(event) {
       // launch modal

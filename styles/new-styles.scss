@@ -21,7 +21,7 @@ div h1 {
   margin-bottom: 1.5em;
 }
 
-.productList {
+.productList, .chatList {
   background-color: #e7c7aa;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@ div h1 {
   cursor: pointer;
 }
 
-.product-card img {
+.product-card img, .chat-card img {
   border-radius: 2%;
   max-width: 100%;
   height: auto;
@@ -47,8 +47,45 @@ div h1 {
   margin-left: 2em;
 }
 
+article .chat-card {
+  text-align: center;
+  justify-content: center;
+  align-items: baseline;
+}
+
+// search form styles
+#new-product-form {
+  padding: 1em;
+  color: #67508d;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3em;
+  border: solid 2px rgb(103, 80, 141);
+  border-radius: 7px;
+}
+
+#new-product-form input{
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  display: block;
+}
+
+
+#new-product-form button{
+  background-color: #67508d;
+  color: #e7c7aa; 
+ }
+
+
+
+
+
+
+
 /* pseudo-styles */
-.product-card img:hover {
+.product-card img:hover, .chat-card img:hover {
   opacity: 0.8;
   transition: opacity, 0.4s, fade-in;
 }

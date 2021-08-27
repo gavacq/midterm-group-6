@@ -8,15 +8,19 @@
     position: center;
   }
   /* flex container */
-  .productList {
+  .productList{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
   }
-  .productCard {
-    width: 50px;
+
+  article .chatList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
+ 
 }
 
 /* media queries for desktop styles */

@@ -14,21 +14,6 @@ $(document).ready(function() {
       </form>
     `);
 
-  // create jQuery element for the favorite icon and add click event.
-  // this renders only the favorites.
-  $favoriteIcon = $(`<div id = "favorite-icon">Favorites button</div>`)
-    .on('click', function(event) {
-      event.preventDefault();
-      getProducts('favorite=true')
-        .then(function(json) {
-          AppLib.productList.createProductList(json);
-          AppLib.viewManager.show('productList');
-        });
-    });
-  
-  // append icon to search form
-  $searchForm.append($favoriteIcon);
-
   // add the createSearchForm method to the searchForm object in the AppLib library
   AppLib.$searchForm = $searchForm;
 

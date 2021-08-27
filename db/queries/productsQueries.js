@@ -20,7 +20,7 @@ module.exports = db => {
       const filters = [];
 
       // start query with info that comes before the WHERE clause
-      let queryString = `SELECT * FROM products WHERE products.is_sold = false`;
+      let queryString = `SELECT * FROM products`;
 
       // --------- the filter by favorites part is not functional yet -----------//
       // FILTER BY FAVS: return only favorites
@@ -29,8 +29,13 @@ module.exports = db => {
         queryString += `
           JOIN favorites ON product_id = products.id
           JOIN users ON user_id = users.id
-          WHERE user_id = ${options.userId}
-          `;
+          WHERE user_id = ${options.userId} AND`;
+      }
+
+      if (queryString.includes('WHERE')) {
+        queryString += ` products.is_sold = false`;
+      } else {
+        queryString += ` WHERE products.is_sold = false`;
       }
 
       // -------------- filter by price -------------------- //

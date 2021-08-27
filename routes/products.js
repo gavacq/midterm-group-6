@@ -60,7 +60,9 @@ module.exports = productsQueries => {
       console.log('product', product);
       // user or admin views a product modal
       productsQueries.viewProduct(product)
-        .then(data => res.send(data.rows[0]))
+        .then(data => {
+          res.json(data);
+        })
         .catch(err => console.log(err));
     })
     .post((req, res) => {

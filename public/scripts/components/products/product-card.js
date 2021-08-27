@@ -27,28 +27,6 @@ $(document).ready(function() {
     return $productCard;
   };
 
-  const $productModal =
-  `
-  <div class="product-modal">
-    <h3 class="product-name"></h3>
-    <ul class="product-details"> 
-      <li class="product-price"></li>
-      <li class="product-description"></li>
-    </ul> 
-
-    <div class="sendMessage">
-    <form class="submitMessage">
-    <textarea
-      name="text"
-      id="tweet-text"
-      placeholder="Talk to the admin here!"
-    ></textarea>
-<br>
-      <button type="submit" class="submitButton">Send</button>
-      </div>
-      <button type="submit" class="soldButton">Mark Sold</button>
-  </div> `;
-
   // $('soldButton').on('click', markAsSold(data.id));
 
   // add the createProductCard method to the productCard object in the AppLib library

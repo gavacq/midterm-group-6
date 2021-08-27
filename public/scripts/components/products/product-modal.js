@@ -69,6 +69,8 @@ $(document).ready(function() {
 
       console.log('data', data);
 
+      $('input').val('');
+
       createChat(data).then(function(json) {
         AppLib.showProductsView();
       });

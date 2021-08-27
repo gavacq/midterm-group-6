@@ -23,6 +23,12 @@ module.exports = productsQueries => {
       // user or admin views all products in home page
       productsQueries.getProducts(options)
         .then(data => {
+          if (Number(req.session.userId) === adminId) {
+            data.push('isAdmin');
+          }
+
+          console.log('getProducts data', data);
+          
           res.json(data);
         })
         .catch(err => console.log(err));

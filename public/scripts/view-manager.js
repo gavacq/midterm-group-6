@@ -16,13 +16,19 @@ $(() => {
 
   AppLib.showProductsView = () => {
     getProducts().then(function(json) {
+      let isAdmin = false;
+      if (json.includes('isAdmin')) {
+        json.pop();
+        isAdmin = true;
+      }
+
       AppLib.productList.createProductList(json);
-      AppLib.viewManager.show('productList');
+      AppLib.viewManager.show('productList', isAdmin);
     });
     $('#page-title').text("Featured Products");
   };
 
-  AppLib.viewManager.show = function(item) {
+  AppLib.viewManager.show = function(item, isAdmin) {
     AppLib.$productList.detach();
     AppLib.$searchForm.detach();
     AppLib.$newProductForm.detach();
@@ -30,6 +36,10 @@ $(() => {
 
     switch (item) {
     case 'productList':
+      if (isAdmin) {
+        AppLib.$newProductForm.appendTo($main);
+      }
+
       AppLib.$searchForm.appendTo($main);
       AppLib.$productList.appendTo($main);
       break;

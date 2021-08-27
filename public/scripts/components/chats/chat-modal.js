@@ -17,6 +17,8 @@ $(() => {
       const data = $(this).serialize();
       console.log('data', data);
 
+      $('input').val('');
+
       sendMessage(chat[0].chat_id, data).then(function(json) {
         // AppLib.productList.createProductList(json);
         // AppLib.viewManager.show('productList');

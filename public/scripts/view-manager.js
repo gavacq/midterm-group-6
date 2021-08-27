@@ -28,13 +28,11 @@ $(() => {
 
     switch (item) {
     case 'productList':
+      AppLib.$searchForm.appendTo($main);
       AppLib.$productList.appendTo($main);
       break;
     case 'chatList':
       AppLib.$chatList.appendTo($main);
-      break;
-    case 'searchForm':
-      AppLib.$searchForm.appendTo($main);
       break;
     case 'newProductForm':
       AppLib.$newProductForm.appendTo($main);

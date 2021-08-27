@@ -9,4 +9,5 @@ $(() => {
       AppLib.viewManager.show('chatList');
     });
   });
+  // add favorites filter button here
 });

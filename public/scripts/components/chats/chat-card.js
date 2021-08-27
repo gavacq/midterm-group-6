@@ -5,9 +5,9 @@ $(document).ready(function() {
   // FUNCTION: generates the HTML for the modal view of a product.
   const createChatCard = chat => {
     const $chatCard =
-    $(`<article class = 'chat-card' id = ${chat.chat_id}>
+    $(`<article class = 'chat-card' id = ${chat.chatId}>
       <section class = 'chat-card-preview-image'>
-        <img src = '${chat.image_path}' width=200 alt = 'product-preview'>    
+        <img src = '${chat.imagePath}' width=200 alt = 'product-preview'>    
       </section>
     </article>`
     ).on('click', (function(event) {

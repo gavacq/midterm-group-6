@@ -18,9 +18,16 @@ $(() => {
 
   function createChatList(chats) {
     clearChatList();
-    for (const chat of chats) {
+    for (const chat in chats) {
+      console.log('chats: ', chats[chat]);
+
+      const chatCardData = {
+        chatId: chats[chat][0].chat_id,
+        imagePath: chats[chat][0].image_path
+      };
+      
       // TODO: for user, group chat cards by productId. For admin, group by user, and then productiD
-      const chatCard = AppLib.chatCard.createChatCard(chat);
+      const chatCard = AppLib.chatCard.createChatCard(chatCardData);
       addChatCard(chatCard);
     }
   }

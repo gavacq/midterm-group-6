@@ -17,7 +17,27 @@ module.exports = (db) => {
 
       return db
         .query(queryString, queryParams)
-        .then((result) => result.rows)
+        .then((result) => {
+          console.log('result.rows', result.rows);
+          const chats = {};
+
+          result.rows.forEach(e => {
+            if (!chats[e.id]) {
+              chats[e.id] = [];
+            }
+
+            chats[e.id].push(e);
+          });
+
+          console.log('chats', JSON.stringify(chats));
+
+          // result.rows.reduce((acc, e) => {
+          //   if
+
+          // }, []);
+          
+          return chats;
+        })
         .catch((error) => error.message);
     },
 
@@ -54,6 +74,8 @@ module.exports = (db) => {
       return db
         .query(queryString, queryParams)
         .then((result) => {
+          console.log('viewChat result', result.rows);
+          
           return result.rows;
         })
         .catch((error) => error.message);

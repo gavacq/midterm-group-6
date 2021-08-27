@@ -11,6 +11,7 @@ $(() => {
       AppLib.chatList.createChatList(json);
       AppLib.viewManager.show('chatList');
     });
+    $('#page-title').text("Chats");
   };
 
   AppLib.showProductsView = () => {
@@ -18,6 +19,7 @@ $(() => {
       AppLib.productList.createProductList(json);
       AppLib.viewManager.show('productList');
     });
+    $('#page-title').text("Featured Products");
   };
 
   AppLib.viewManager.show = function(item) {

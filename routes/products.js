@@ -60,9 +60,6 @@ module.exports = productsQueries => {
       console.log('product', product);
       // user or admin views a product modal
       productsQueries.viewProduct(product)
-<<<<<<< HEAD
-        .then(data => res.send(data.rows[0]))
-=======
         .then(data => {
           const userId = Number(req.session.userId);
           if (adminId === userId) {
@@ -73,7 +70,6 @@ module.exports = productsQueries => {
           
           res.json(data);
         })
->>>>>>> 13ed47e321911ae1edacf2f22ac8fb419c12ffa2
         .catch(err => console.log(err));
     })
     .post((req, res) => {

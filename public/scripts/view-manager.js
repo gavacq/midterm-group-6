@@ -37,7 +37,7 @@ $(() => {
       $error.appendTo('body');
       setTimeout(() => {
         $error.remove();
-        viewManager.show('productList');
+        view.Manager.show('productList');
       }, 2000);
           
       break;

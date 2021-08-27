@@ -33,6 +33,15 @@ $(document).ready(function() {
       AppLib.showProductsView();
     });
 
+    $productModal.on('click', '#sell-button', function() {
+      // retrieve the id from the html
+      const productId = (product.id);
+   
+      markAsSold(productId);
+    
+      AppLib.showProductsView();
+    });
+
     $productModal.children('form').on('submit', function(event) {
       event.preventDefault();
       let data = $(this).serialize();

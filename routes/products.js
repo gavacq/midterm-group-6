@@ -127,7 +127,7 @@ module.exports = productsQueries => {
     .post((req, res) => {
       // check that user is admin
       if (Number(req.session.userId) === adminId) {
-        const product = {productId: req.params.productId};
+        const product = {productId: req.params.product_id};
 
         // admin marks a product as sold
         productsQueries.markAsSold(product)

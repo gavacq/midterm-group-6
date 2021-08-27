@@ -91,7 +91,7 @@ module.exports = (db) => {
       const queryParams = [chat.chatId, chat.from_admin, time, chat.content.message];
 
       return db.query(queryString, queryParams)
-        .then((result) => result.rows)
+        .then((result) => result.rows[0])
         .catch((error) => error.message);
     },
   };

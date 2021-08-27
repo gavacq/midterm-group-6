@@ -61,7 +61,7 @@ module.exports = (chatsQueries) => {
 
       chatsQueries.sendMessage(chat)
         .then(data => {
-          console.log('data', data);
+          console.log('data returned', data);
           res.json(data);
         })
         .catch(err => console.log(err));

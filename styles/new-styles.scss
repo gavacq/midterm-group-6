@@ -35,6 +35,7 @@ div h1 {
 .navbar .nav-button i {
   display: flex;
   align-items: flex-start;
+  cursor: pointer;
 }
 
 .product-card img, .chat-card img {
@@ -60,4 +61,12 @@ article .chat-card {
 .product-card img:hover, .chat-card img:hover {
   opacity: 0.8;
   transition: opacity, 0.4s, fade-in;
+}
+
+.product-modal #fav-modal-button {
+  cursor: pointer;
+  color: #e4b992;
+  &:hover {
+    color: #dac3ff;
+  }
 }

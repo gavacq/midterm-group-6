@@ -8,5 +8,14 @@ $(() => {
   $('#logo').on('click', () => {
     AppLib.showProductsView();
   });
+
+  $('#favorites-filter').on('click', function(event) {
+    event.preventDefault();
+    getProducts('favorite=true')
+      .then(function(json) {
+        AppLib.productList.createProductList(json);
+        AppLib.viewManager.show('productList');
+      });
+  });
   // add favorites filter button here
 });

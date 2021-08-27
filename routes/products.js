@@ -60,7 +60,20 @@ module.exports = productsQueries => {
       console.log('product', product);
       // user or admin views a product modal
       productsQueries.viewProduct(product)
+<<<<<<< HEAD
         .then(data => res.send(data.rows[0]))
+=======
+        .then(data => {
+          const userId = Number(req.session.userId);
+          if (adminId === userId) {
+            data[0].isAdmin = true;
+          }
+
+          console.log('data', data);
+          
+          res.json(data);
+        })
+>>>>>>> 13ed47e321911ae1edacf2f22ac8fb419c12ffa2
         .catch(err => console.log(err));
     })
     .post((req, res) => {
@@ -119,7 +132,7 @@ module.exports = productsQueries => {
     .post((req, res) => {
       // check that user is admin
       if (Number(req.session.userId) === adminId) {
-        const product = {productId: req.params.productId};
+        const product = {productId: req.params.product_id};
 
         // admin marks a product as sold
         productsQueries.markAsSold(product)

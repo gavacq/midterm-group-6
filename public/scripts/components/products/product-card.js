@@ -4,12 +4,9 @@ $(document).ready(function() {
 
   // FUNCTION: generates the HTML for the modal view of a product.
   const createProductCard = function(product) {
-
     const $productCard = $(`
     <article class = 'product-card' id = ${product.id}>
-      <section class = 'product-card-preview-image'>
         <img src = '${product.image_path}' width=500 alt = 'product-preview'>    
-      </section>
     </article>
    
 
@@ -20,6 +17,7 @@ $(document).ready(function() {
       this.blur(); // Manually remove focus from clicked link.
       viewProduct(this.id).then(function(data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         $('.product-price').html(data.price);
         $('.product-name').html(data.name);
         $('.product-description').html(data.description);
@@ -29,6 +27,8 @@ $(document).ready(function() {
         
         console.log('data: ', data);
         
+=======
+>>>>>>> 13ed47e321911ae1edacf2f22ac8fb419c12ffa2
         AppLib.productModal.createProductModal(data[0]).appendTo('#main-content').modal();
 >>>>>>> da5bb887955c1c20a20e98ade82fdc28c3c09fdf
       });

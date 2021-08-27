@@ -29,7 +29,13 @@ module.exports = db => {
         queryString += `
           JOIN favorites ON product_id = products.id
           JOIN users ON user_id = users.id
-          WHERE user_id = ${options.userId}`;
+          WHERE user_id = ${options.userId} AND`;
+      }
+
+      if (queryString.includes('WHERE')) {
+        queryString += ` products.is_sold = false`;
+      } else {
+        queryString += ` WHERE products.is_sold = false`;
       }
 
       // -------------- filter by price -------------------- //
@@ -48,7 +54,7 @@ module.exports = db => {
 
       // concatenate filters
       if (filters.length > 0) {
-        queryString += ' WHERE ' + filters.join(' AND ');
+        queryString += ' AND ' + filters.join(' AND ');
       }
 
       // complete queryString
@@ -96,7 +102,7 @@ module.exports = db => {
     // USER: add a product to favorites
     addToFavorites(product, userId) {
       const queryString = `INSERT INTO favorites (product_id, user_id)
-      VALUES ($1, $2);`
+      VALUES ($1, $2);`;
 
       const queryParams = [product.productId, userId];
 
@@ -139,6 +145,8 @@ module.exports = db => {
 
       const queryParams = [product.productId];
 
+      console.log('markAsSold', queryString, queryParams);
+
       return db
         .query(queryString, queryParams)
         .then(result => result)
@@ -147,4 +155,3 @@ module.exports = db => {
 
   };
 };
-

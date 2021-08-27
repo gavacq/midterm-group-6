@@ -13,6 +13,13 @@ $(() => {
     });
   };
 
+  AppLib.showProductsView = () => {
+    getProducts().then(function(json) {
+      AppLib.productList.createProductList(json);
+      AppLib.viewManager.show('productList');
+    });
+  };
+
   AppLib.viewManager.show = function(item) {
     AppLib.$productList.detach();
     AppLib.$searchForm.detach();

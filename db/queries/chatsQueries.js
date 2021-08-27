@@ -55,7 +55,7 @@ module.exports = (db) => {
           const queryString = `INSERT INTO messages (chat_id,  from_admin, datetime, content)
       VALUES ($1, $2, $3, $4) RETURNING *`;
           //replace 'aaa' with content once frontend is ready
-          const queryParams = [id, 'FALSE', time, 'aaa'];
+          const queryParams = [id, 'FALSE', time, content];
 
           return db.query(queryString, queryParams)
             .then((result) => result.rows)

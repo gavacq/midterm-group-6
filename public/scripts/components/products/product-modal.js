@@ -3,12 +3,12 @@ $(document).ready(function() {
 
   const createProductModal = (product) => {
     console.log('product', product);
-    
+
     const $productModal = $(
       `
       <div class="product-modal" id="${product.id}-modal">
         <h3 class="product-name">${product.name}</h3>
-        <ul class="product-details"> 
+        <ul class="product-details">
           <li>Price: ${product.price}</li>
           <li>Description: ${product.description}</li>
         </ul>
@@ -22,25 +22,34 @@ $(document).ready(function() {
       `);
     } else {
       $productModal.append(`
-      <i class="fas fa-heart fav-modal-button"></i>
+      <i class="fas fa-heart fav-modal-button" id="fav-modal-button"></i>
       <form><input type='text' name='content' placeholder='Message the seller'><button type='submit'>Send</button></form>`);
     }
-    
+
     $productModal.on('click', '#delete-button', function() {
       // retrieve the id from the html
       const productId = (product.id);
-   
+
       deleteProduct(productId);
-    
+
       AppLib.showProductsView();
     });
 
     $productModal.on('click', '#sell-button', function() {
       // retrieve the id from the html
       const productId = (product.id);
-   
+
       markAsSold(productId);
-    
+
+      AppLib.showProductsView();
+    });
+
+    $productModal.on('click', '#fav-modal-button', function() {
+      // retrieve the id from the html
+      const productId = (product.id);
+
+      addToFavorites(productId);
+
       AppLib.showProductsView();
     });
 

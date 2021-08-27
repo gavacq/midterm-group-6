@@ -1,13 +1,9 @@
-// NOTES:
-//  LINE 18 - 19 ONLY IF ADMIN: show if the item is in the favorites - render the heart icon here?
-
 $(document).ready(function() {
   // add empty object to AppLib library
   AppLib.productCard = {};
 
   // FUNCTION: generates the HTML for the modal view of a product.
-  // if admin, the favorites part should not be generated.
-  const createProductCard = product => {
+  const createProductCard = function(product) {
     const $productCard = $(`
     <article class = 'product-card' id = ${product.id}>
       <section class = 'product-card-preview-image'>
@@ -22,11 +18,9 @@ $(document).ready(function() {
       event.preventDefault();
       this.blur(); // Manually remove focus from clicked link.
       viewProduct(this.id).then(function(data) {
-        $('.product-price').html(data.price);
-        $('.product-name').html(data.name);
-        $('.product-description').html(data.description);
-
-        createProductModal(data).appendTo('#main-content').modal();
+        console.log('data: ', data);
+        
+        AppLib.productModal.createProductModal(data[0]).appendTo('#main-content').modal();
       });
     }));
 

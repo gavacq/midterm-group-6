@@ -7,6 +7,7 @@ const getProducts = function(params) {
   return $.ajax({url, });
 };
 
+// client side: remove product
 const deleteProduct = function(productId) {
   return $.ajax({
     method: "POST",

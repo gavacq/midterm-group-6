@@ -96,7 +96,7 @@ module.exports = db => {
     // USER: add a product to favorites
     addToFavorites(product, userId) {
       const queryString = `INSERT INTO favorites (product_id, user_id)
-      VALUES ($1, $2);`
+      VALUES ($1, $2);`;
 
       const queryParams = [product.productId, userId];
 
@@ -147,4 +147,3 @@ module.exports = db => {
 
   };
 };
-

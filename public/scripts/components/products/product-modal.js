@@ -12,12 +12,17 @@ $(document).ready(function() {
           <li>Price: ${product.price}</li>
           <li>Description: ${product.description}</li>
         </ul>
-        <button id="delete-button" type="submit">Delete product</button>
-        <button id="sell-button" type="submit">Sell product</button
       </div> `
     );
 
-    $productModal.append(`<form><input type='text' name='content' placeholder='Message the seller'><button type='submit'>Send</button></form>`);
+    if (product.isAdmin) {
+      $productModal.append(`
+        <button id="delete-button" type="submit">Delete product</button>
+        <button id="sell-button" type="submit">Sell product</button
+      `);
+    } else {
+      $productModal.append(`<form><input type='text' name='content' placeholder='Message the seller'><button type='submit'>Send</button></form>`);
+    }
     
     $productModal.on('click', '#delete-button', function() {
       // retrieve the id from the html

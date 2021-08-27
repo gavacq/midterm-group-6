@@ -2,7 +2,7 @@
 // run "npm run sass-watch" to sync the css files
 
 body {
-  background-color: #C7EFCF;
+  background-color: #c7efcf;
   h1 {
     color: #d6d1b1;
   }
@@ -11,25 +11,26 @@ body {
 .navbar {
   height: 100px;
   display: flex;
-  flex-direction:row;
-  justify-content:space-between;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  color: #F0B67F;
-  font-family:'Open Sans', sans-serif;
+  color: #f0b67f;
+  font-family: "Open Sans", sans-serif;
   font-size: xx-large;
   font-style: italic;
   font-weight: bold;
-  background-color: #EEF5DB;
+  background-color: #eef5db;
   top: 0;
 
   .title {
     padding-left: 2em;
+    cursor: pointer;
   }
 
   .nav-button {
     padding-right: 2em;
-    color: #F0B67F;
+    color: #f0b67f;
     i {
       padding-left: 0.2em;
     }
@@ -37,5 +38,4 @@ body {
       color: #fe5f55;
     }
   }
-
 }

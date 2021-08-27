@@ -14,18 +14,48 @@ $(document).ready(function() {
         <img src = '${product.image_path}' width=500 alt = 'product-preview'>    
       </section>
     </article>
+   
+
+
     `).on('click', (function(event) {
       // launch modal
       event.preventDefault();
       this.blur(); // Manually remove focus from clicked link.
       viewProduct(this.id).then(function(data) {
-        $(`<div><p>${JSON.stringify(data)}</p></div>`).appendTo('#main-content').modal();
-      // createProductModal(data).appendTo('#main-content').modal();
+        $('.product-price').html(data.price);
+        $('.product-name').html(data.name);
+        $('.product-description').html(data.description);
+
+        createProductModal(data).appendTo('#main-content').modal();
       });
     }));
 
     return $productCard;
   };
+
+  const $productModal =
+  `
+  <div class="product-modal">
+    <h3 class="product-name"></h3>
+    <ul class="product-details"> 
+      <li class="product-price"></li>
+      <li class="product-description"></li>
+    </ul> 
+
+    <div class="sendMessage">
+    <form class="submitMessage">
+    <textarea
+      name="text"
+      id="tweet-text"
+      placeholder="Talk to the admin here!"
+    ></textarea>
+<br>
+      <button type="submit" class="submitButton">Send</button>
+      </div>
+      <button type="submit" class="soldButton">Mark Sold</button>
+  </div> `;
+
+  // $('soldButton').on('click', markAsSold(data.id));
 
   // add the createProductCard method to the productCard object in the AppLib library
   AppLib.productCard.createProductCard = createProductCard;

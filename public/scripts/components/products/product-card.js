@@ -6,9 +6,7 @@ $(document).ready(function() {
   const createProductCard = function(product) {
     const $productCard = $(`
     <article class = 'product-card' id = ${product.id}>
-      <section class = 'product-card-preview-image'>
         <img src = '${product.image_path}' width=500 alt = 'product-preview'>    
-      </section>
     </article>
     `).on('click', (function(event) {
       // launch modal

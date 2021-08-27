@@ -1,8 +1,5 @@
 $(() => {
-  getProducts().then(function(json) {
-    AppLib.productList.createProductList(json);
-    AppLib.viewManager.show('productList');
-  });
+  AppLib.showProductsView();
 
   $('.fas.fa-comment-dots').on('click', ()=>{
     AppLib.showChatsView();

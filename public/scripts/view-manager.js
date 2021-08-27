@@ -6,18 +6,32 @@ $(() => {
 
   AppLib.viewManager = {};
 
+  AppLib.showChatsView = () => {
+    getChats().then((json)=>{
+      AppLib.chatList.createChatList(json);
+      AppLib.viewManager.show('chatList');
+    });
+  };
+
+  AppLib.showProductsView = () => {
+    getProducts().then(function(json) {
+      AppLib.productList.createProductList(json);
+      AppLib.viewManager.show('productList');
+    });
+  };
+
   AppLib.viewManager.show = function(item) {
     AppLib.$productList.detach();
     AppLib.$searchForm.detach();
     AppLib.$newProductForm.detach();
-    // AppLib.$chatList.detach();
+    AppLib.$chatList.detach();
 
     switch (item) {
     case 'productList':
       AppLib.$productList.appendTo($main);
       break;
     case 'chatList':
-      $chatList.appendTo($main);
+      AppLib.$chatList.appendTo($main);
       break;
     case 'searchForm':
       AppLib.$searchForm.appendTo($main);

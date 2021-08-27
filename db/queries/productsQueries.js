@@ -20,7 +20,7 @@ module.exports = db => {
       const filters = [];
 
       // start query with info that comes before the WHERE clause
-      let queryString = `SELECT * FROM products`;
+      let queryString = `SELECT * FROM products WHERE products.is_sold = false`;
 
       // --------- the filter by favorites part is not functional yet -----------//
       // FILTER BY FAVS: return only favorites
@@ -29,7 +29,8 @@ module.exports = db => {
         queryString += `
           JOIN favorites ON product_id = products.id
           JOIN users ON user_id = users.id
-          WHERE user_id = ${options.userId}`;
+          WHERE user_id = ${options.userId}
+          `;
       }
 
       // -------------- filter by price -------------------- //
@@ -48,7 +49,7 @@ module.exports = db => {
 
       // concatenate filters
       if (filters.length > 0) {
-        queryString += ' WHERE ' + filters.join(' AND ');
+        queryString += ' AND ' + filters.join(' AND ');
       }
 
       // complete queryString
@@ -96,14 +97,25 @@ module.exports = db => {
     // USER: add a product to favorites
     addToFavorites(product, userId) {
       const queryString = `INSERT INTO favorites (product_id, user_id)
-                           WHERE product_id = $1
-                           AND user_id = $2`;
+      VALUES ($1, $2);`;
 
       const queryParams = [product.productId, userId];
 
       return db
         .query(queryString, queryParams)
         .then(result => result)
+        .catch(error => error.message);
+    },
+
+    deleteFavourites(product, userId) {
+      const queryString = `DELETE FROM favorites
+      WHERE product_id = $1 AND user_id = $2`;
+
+      const queryParams = [product.productId, userId];
+
+      return db
+        .query(queryString, queryParams)
+        .then(result => console.log('product was deleted from favorites.'))
         .catch(error => error.message);
     },
 
@@ -128,6 +140,8 @@ module.exports = db => {
 
       const queryParams = [product.productId];
 
+      console.log('markAsSold', queryString, queryParams);
+
       return db
         .query(queryString, queryParams)
         .then(result => result)
@@ -136,4 +150,3 @@ module.exports = db => {
 
   };
 };
-

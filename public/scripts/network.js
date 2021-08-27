@@ -3,7 +3,7 @@ const getProducts = function(params) {
   if (params) {
     url += "?" + params;
   }
-  
+
   return $.ajax({url, });
 };
 
@@ -37,7 +37,7 @@ const removeFromFavorites = function(productId) {
 
 const postNewProduct = function(data) {
   console.log('inside postNewProduct script');
-  
+
   return $.ajax({
     method: "POST",
     url: "/products",
@@ -69,6 +69,8 @@ const createChat = function(data) {
 };
 
 const sendMessage = function(chatId, data) {
+  console.log('sendMessage', chatId, data);
+
   return $.ajax({
     method: "POST",
     url: `/chats/${chatId}`,

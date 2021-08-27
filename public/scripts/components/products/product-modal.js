@@ -2,6 +2,8 @@ $(document).ready(function() {
   AppLib.productModal = {};
 
   const createProductModal = (product) => {
+    console.log('product', product);
+    
     const $productModal = $(
       `
       <div class="product-modal" id="${product.id}-modal">
@@ -11,6 +13,7 @@ $(document).ready(function() {
           <li>Description: ${product.description}</li>
         </ul>
         <button id="delete-button" type="submit">Delete product</button>
+        <button id="sell-button" type="submit">Sell product</button
       </div> `
     );
 

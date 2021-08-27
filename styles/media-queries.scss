@@ -1,0 +1,48 @@
+
+ /* media queries for tablet styles */
+
+ @media only screen and (min-width: 700px) and (max-width: 1024px) {
+  #main-content {
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+
+  #main-content img {
+    position: center;
+  }
+
+   /* flex container */
+  .productList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .productCard {
+    width: 50px;
+  }
+  
+ 
+}
+
+
+ /* media queries for desktop styles */
+
+ @media only screen and (min-width: 1024px) {
+
+  /* #main-flex {
+    margin-left: 10%;
+    margin-right: 10%;
+  } */
+
+  #main-content {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  #main-content img {
+    
+  }
+
+
+ }

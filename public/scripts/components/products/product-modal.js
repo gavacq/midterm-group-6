@@ -22,7 +22,7 @@ $(document).ready(function() {
       `);
     } else {
       $productModal.append(`
-      <i class="fas fa-heart fav-modal-button" id="fav-modal-button"></i>
+      <i class="fas fa-heart" id="fav-modal-button"></i>
       <form><input type='text' name='content' placeholder='Message the seller'><button type='submit'>Send</button></form>`);
     }
 

@@ -53,6 +53,7 @@ const productsQueries = require('./db/queries/productsQueries')(db);
 
 // products is a function imported from products.js
 const products  = require('./routes/products');
+
 // productsRouter is a router object for /products
 const productsRouter = products(productsQueries);
 

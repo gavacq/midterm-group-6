@@ -103,7 +103,7 @@ module.exports = db => {
 
       return db
         .query(queryString, queryParams)
-        .then(result => console.log('product was added to favorites.'))
+        .then(result => result)
         .catch(error => error.message);
     },
 
@@ -116,7 +116,7 @@ module.exports = db => {
 
       return db
         .query(queryString, queryParams)
-        .then(result => console.log('product was deleted.'))
+        .then(result => result)
         .catch(error => error.message);
     },
 
@@ -130,16 +130,10 @@ module.exports = db => {
 
       return db
         .query(queryString, queryParams)
-        .then(result => console.log('product was marked as sold.'))
+        .then(result => result)
         .catch(error => error.message);
     }
 
   };
 };
 
-// --------- NOTES -------- //
-// not adding ids (serial primary key) in the inserts
-// in addToFavorites, do we need 2 arguments to get both user id and product id,
-// or do we need to do a JOIN in the query?
-// options is an object that corresponds to req.params
-// when deleting a product, will that cascade to delete the entry in favs?

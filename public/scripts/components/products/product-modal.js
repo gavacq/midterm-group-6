@@ -17,13 +17,13 @@ $(document).ready(function() {
 
     if (product.isAdmin) {
       $productModal.append(`
-        <button id="delete-button" type="submit">Delete product</button>
-        <button id="sell-button" type="submit">Sell product</button
+        <button id="delete-button" type="submit" class="btn btn-danger">Delete product</button>
+        <button id="sell-button" type="submit" class='btn btn-primary'>Sell product</button
       `);
     } else {
       $productModal.append(`
       <i class="fas fa-heart" id="fav-modal-button"></i>
-      <form><input type='text' name='content' placeholder='Message the seller'><button type='submit'>Send</button></form>`);
+      <form><input type='text' name='content' placeholder='Message the seller'><button type='submit' class='btn btn-primary'>Send</button></form>`);
     }
 
     $productModal.on('click', '#delete-button', function() {

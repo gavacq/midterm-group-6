@@ -8,7 +8,7 @@ $(() => {
       $chatModal.append(`<p>${e.content}</p>`);
     });
 
-    $chatModal.append(`<form><input type='text' name='message' placeholder='enter a message'><button type='submit'>Send</button></form>`);
+    $chatModal.append(`<form><input type='text' name='message' placeholder='enter a message'><button type='submit' class='btn btn-primary'>Send</button></form>`);
     
     $chatModal.children('form').on('submit', function(event) {
       event.preventDefault();

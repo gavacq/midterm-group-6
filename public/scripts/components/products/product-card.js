@@ -4,9 +4,12 @@ $(document).ready(function() {
 
   // FUNCTION: generates the HTML for the modal view of a product.
   const createProductCard = function(product) {
+    console.log('pirce', product.price);
+    
     const $productCard = $(`
     <article class = 'product-card' id = ${product.id}>
         <img src = '${product.image_path}' width=500 alt = 'product-preview'>    
+        <div class="after"><p>$${product.price}</p></div>
     </article>
     `).on('click', (function(event) {
       // launch modal

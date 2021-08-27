@@ -21,7 +21,8 @@ div h1 {
   margin-bottom: 1.5em;
 }
 
-.productList, .chatList {
+.productList,
+.chatList {
   background-color: #e7c7aa;
   display: flex;
   flex-direction: column;
@@ -38,7 +39,8 @@ div h1 {
   cursor: pointer;
 }
 
-.product-card img, .chat-card img {
+.product-card img,
+.chat-card img {
   border-radius: 2%;
   max-width: 100%;
   height: auto;
@@ -66,26 +68,20 @@ article .chat-card {
   border-radius: 7px;
 }
 
-#new-product-form input{
+#new-product-form input {
   margin-top: 0.5em;
   margin-bottom: 1em;
   display: block;
 }
 
-
-#new-product-form button{
+#new-product-form button {
   background-color: #67508d;
-  color: #e7c7aa; 
- }
-
-
-
-
-
-
+  color: #e7c7aa;
+}
 
 /* pseudo-styles */
-.product-card img:hover, .chat-card img:hover {
+.product-card img:hover,
+.chat-card img:hover {
   opacity: 0.8;
   transition: opacity, 0.4s, fade-in;
 }
@@ -96,4 +92,19 @@ article .chat-card {
   &:hover {
     color: #dac3ff;
   }
+}
+
+.product-card {
+  position: relative;
+}
+
+.product-card .after {
+  position: absolute;
+  top: 0;
+  left: 5em;
+  color: white;
+  font-size: 50px;
+  padding: 20px;
+  text-align: center;
+  z-index: 10;
 }

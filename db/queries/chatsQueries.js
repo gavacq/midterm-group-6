@@ -88,7 +88,7 @@ module.exports = (db) => {
       VALUES ($1, $2, $3, $4)
       RETURNING *`;
       //replace 'aaa' with content once frontend is ready
-      const queryParams = [chat.chatId, chat.from_admin, time, 'aaa'];
+      const queryParams = [chat.chatId, chat.from_admin, time, chat.content.message];
 
       return db.query(queryString, queryParams)
         .then((result) => result.rows)

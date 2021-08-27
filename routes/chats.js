@@ -56,7 +56,7 @@ module.exports = (chatsQueries) => {
       const chat = {
         chatId: req.params.chatId,
         from_admin: Boolean(Number(req.session.userId) === adminId),
-        content: req.body.content
+        content: req.body
       };
 
       chatsQueries.sendMessage(chat)

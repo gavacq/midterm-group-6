@@ -6,6 +6,13 @@ $(() => {
 
   AppLib.viewManager = {};
 
+  AppLib.showChatsView = () => {
+    getChats().then((json)=>{
+      AppLib.chatList.createChatList(json);
+      AppLib.viewManager.show('chatList');
+    });
+  };
+
   AppLib.viewManager.show = function(item) {
     AppLib.$productList.detach();
     AppLib.$searchForm.detach();

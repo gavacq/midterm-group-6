@@ -22,10 +22,19 @@
 }
 
 .navbar .nav-button i {
+  color: #e4b992;
   width: 40px;
 }
 
 /* pseudo styles */
 .navbar .nav-button i:hover {
   color: #dac3ff;
+}
+
+.btn.btn-secondary {
+  background-color:#67508d;
+  color: #e4b992;
+  :hover{
+    color: #dac3ff;
+  }
 }

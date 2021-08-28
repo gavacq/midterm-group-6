@@ -73,26 +73,8 @@ const chatsRouter = chats(chatsQueries);
 app.use("/products", productsRouter);
 app.use("/chats", chatsRouter);
 
-//login page
-app.get("/login", (req, res) => {
-  // if (userID) {
-  //   return res.redirect("/");
-  // }
-  // const templateVars = {
-  //   user: userDatabase[req.session.user_id],
-  // };
 
-  res.render("login");
-});
 
-// GET LOGIN PATH
-app.get("/login/:userId", (req, res) => {
-  // create session cookies
-  req.session.userId = req.params.userId;
-
-  // redirect to /
-  res.redirect("/");
-});
 
 // GET HOME PAGE (root path)
 
@@ -122,29 +104,22 @@ app.get("/404", (req, res) => {
 //   res.render("urls_register", templateVars);
 // });
 
+//login page
+app.get("/login", (req, res) => {
+  res.render("login");
+});
 //login handler
 app.post("/login", (req, res) => {
-  // const user = getUserByEmail(req.body.email, userDatabase);
   req.session.userId = req.body.id;
-  // if (Number(req.body.id) === adminId) {
     res.redirect('/')
-  // }
-  // return res.send("Email does not exist.");
-  // if (!bcrypt.compareSync(req.body.password, user.password)) {
-  //   return res
-  //     .status(400)
-  //     .send("Wrong password.Please <a href='/login'>try again</a>");
-  // }
-
-  // req.session.user_id = user.id;
-  // return res.redirect("/urls");
+ 
 });
 
 //logout handler
-app.post("/logout", (req, res) => {
-  req.session = undefined;
-  res.redirect("/urls");
-});
+// app.post("/logout", (req, res) => {
+//   req.session = undefined;
+//   res.redirect("/urls");
+// });
 
 // -------------------- Listen on specified port --------------------- //
 

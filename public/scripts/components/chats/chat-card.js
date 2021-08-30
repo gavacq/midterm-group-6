@@ -16,6 +16,7 @@ $(document).ready(function() {
       this.blur(); // Manually remove focus from clicked link.
       viewChat(this.id).then(function(data) {
         // $(`<div><p>${JSON.stringify(data)}</p></div>`).appendTo('#main-content').modal();
+        console.log('data',data)
         AppLib.chatModal.createChatModal(data).appendTo('#main-content').modal();
       });
     }));

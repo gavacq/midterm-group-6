@@ -1,0 +1,84 @@
+div .chat-modal {
+  background-color: #f0b67f;
+  display: flex;
+  flex-direction: row;
+
+  .message-container {
+    .message {
+      position: relative;
+      background-color: #237f8c;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      color: #000;
+      background-color: #e6e7ec;
+      max-width: 600px;
+      width: -webkit-fit-content;
+      width: -moz-fit-content;
+      width: fit-content;
+      position: relative;
+      margin: 15px 0;
+      word-break: break-all;
+      // transform: rotate(180deg);
+      direction: ltr;
+
+      &-admin {
+        background-color: #814d71;
+        color: #fff;
+        margin-left: auto;
+        background-color: #00a9de;
+      }
+    }
+  }
+
+  form {
+    // position: absolute;
+    // bottom: 0px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+    height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    input {
+      height: 40px;
+      font-size: 16px;
+      min-width: 90%;
+      padding-left: 15px;
+      background-color: #fff;
+      border-radius: 15px;
+      border: none;
+    }
+    button {
+      width: 10%;
+      height: 100%;
+      font-size: 16px;
+      background-color: transparent;
+      border: none;
+      text-align: center;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.chatList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatList img {
+  border: solid #67508d 3px;
+}

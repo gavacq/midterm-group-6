@@ -1,8 +1,11 @@
 div .chat-modal {
   background-color: #f0b67f;
+  display: flex;
+  flex-direction: row;
 
   .message-container {
     .message {
+      position: relative;
       background-color: #237f8c;
       font-size: 18px;
       padding: 10px 20px;
@@ -28,19 +31,18 @@ div .chat-modal {
     }
   }
 
-  .chat__form {
-    background-color: #e0e0e0;
-    form {
-      max-width: 800px;
-      margin: 0 auto;
-      height: 50px;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-    }
+  form {
+    // position: absolute;
+    max-width: 800px;
+    margin: 0 auto;
+    height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
     input {
       height: 40px;
       font-size: 16px;

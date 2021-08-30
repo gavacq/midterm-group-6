@@ -19,7 +19,7 @@ $(() => {
 
     $chatModal.append(
       
-      `<form id="chat__form"><input type='text' name='message' placeholder='enter a message :)'><button type='submit'>Send</button></form>`
+      `<form id="chat__form"><input type='text' name='message' placeholder='Enter a message :)'><button type='submit'>Send</button></form>`
     );
 
     $chatModal.children("form").on("submit", function (event) {

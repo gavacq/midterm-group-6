@@ -24,6 +24,7 @@ module.exports = productsQueries => {
       productsQueries.getProducts(options)
         .then(data => {
           if (Number(req.session.userId) === adminId) {
+           
             data.push('isAdmin');
           }
 

@@ -21,6 +21,7 @@ $(() => {
       
       `<form id="chat__form"><input type='text' name='message' placeholder='Enter a message :)'><button type='submit'>Send</button></form>`
     );
+   
 
     $chatModal.children("form").on("submit", function (event) {
       event.preventDefault();
@@ -36,7 +37,7 @@ $(() => {
         // AppLib.productList.createProductList(json);
         // AppLib.viewManager.show('productList');
         if (json.from_admin === true) {
-          $('.message-container').append(`<div class = 'message-admin'>${json.content}</div>`);
+          $('.message-container').append(`<div class = 'message message-admin'>${json.content}</div>`);
         } else{
           $('.message-container').append(`<div class = 'message'>${json.content}</div>`);
         }
